@@ -1,6 +1,8 @@
-package model;
+package model.Interface;
 
 import java.util.List;
+
+import model.ReportBean;
 
 public interface ReportInterface {
 

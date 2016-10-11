@@ -1,15 +1,15 @@
-package model;
+package model.Interface;
 
 import java.util.Date;
 import java.util.List;
+
+import model.MessageBean;
 
 public interface MessageInterface {
 
 	// select
 	/* 王荐進(頭) */
 	public abstract List<MessageBean> selectAll();
-
-	public abstract List<MessageBean> selectByMemberID(int memberID);
 
 	public abstract List<MessageBean> selectByAskDate(Date askDate);
 
