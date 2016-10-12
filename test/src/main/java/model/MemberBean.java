@@ -82,13 +82,13 @@ public class MemberBean {
 			Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 
 			// 新增
-			// MemberBean insert = new MemberBean();
-			// insert.setAccount("VVV");
-			// insert.setPwd("!!!456".getBytes());
-			// insert.setName("SSS");
-			// insert.setID("p789456123");
-			// session.save(insert);
-			// System.out.println("insert=" + insert);
+			 MemberBean insert = new MemberBean();
+			 insert.setAccount("VVV");
+			 insert.setPwd("!!!456".getBytes());
+			 insert.setName("SSS");
+			 insert.setID("p789456123");
+			 session.save(insert);
+			 System.out.println("insert=" + insert);
 			//// 查詢
 			// MemberBean select = (MemberBean) session.get(MemberBean.class,5);
 			// System.out.println("select="+select);
