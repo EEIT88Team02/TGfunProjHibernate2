@@ -75,6 +75,18 @@ public class MemberBean {
 		this.comments = comments;
 	}
 
+	@OneToMany(	mappedBy = "members" ,
+				cascade = { CascadeType.REMOVE })
+	private Set<MemberOrderBean> memberOrders;
+
+	public Set<MemberOrderBean> getMemberOrders() {
+		return memberOrders;
+	}
+
+	public void setMemberOrders(Set<MemberOrderBean> memberOrders) {
+		this.memberOrders = memberOrders;
+	}
+
 	public static void main(String[] args) {
 		try {
 
@@ -90,8 +102,11 @@ public class MemberBean {
 			 session.save(insert);
 			 System.out.println("insert=" + insert);
 			//// 查詢
-			// MemberBean select = (MemberBean) session.get(MemberBean.class,5);
-			// System.out.println("select="+select);
+//			 MemberBean select = (MemberBean) session.get(MemberBean.class,1);
+//			 System.out.println("select="+select);
+			 
+//			 MemberBean select = (MemberBean) session.get(MemberBean.class,1);
+//			 System.out.println("select="+select.getMemberOrders());
 			//// 修改
 			// MemberBean update =(MemberBean) session.get(MemberBean.class,6);
 			// update.setAccount("EEE");
