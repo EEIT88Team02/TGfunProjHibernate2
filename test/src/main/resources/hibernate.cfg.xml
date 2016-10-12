@@ -13,6 +13,14 @@
         <property name="hibernate.current_session_context_class">thread</property>
         
         <mapping class="model.MemberBean"/>	
+        
+        <mapping class="model.MemberOrderBean"/>                
+        <mapping class="model.RoomInfoBean"/>
+        <mapping class="model.OrderRoomInfoBean"/>
+        <mapping class="model.BBQOrderBean"/>
+        <mapping class="model.BBQInfoBean"/>
+        
+        
         <mapping class="model.MessageBean"/>
         <mapping class="model.CommentBean"/>
         <mapping class="model.ReportBean"/>

@@ -23,7 +23,7 @@ public class MessageDAO implements MessageInterface {
 
 			MessageDAO messageDAO = new MessageDAO(session);
 
-			// System.out.println(messageDAO.selectAll());
+			 System.out.println(messageDAO.selectAll());
 
 			// System.out.println(messageDAO.selectByAskDate("2016-08-08 00:00:00"));
 
