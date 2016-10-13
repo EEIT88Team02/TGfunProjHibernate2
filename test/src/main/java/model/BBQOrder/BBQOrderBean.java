@@ -1,4 +1,4 @@
-package model;
+package model.BBQOrder;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -9,12 +9,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 
+import model.BBQInfo.BBQInfoBean;
+import model.MemberOrder.MemberOrderBean;
 import model.misc.HibernateUtil;
 
 @Entity
@@ -40,6 +44,21 @@ public class BBQOrderBean implements Serializable {
 		this.bbqInfos = bbqInfos;
 	}
 
+	@ManyToOne
+	@JoinColumn(name = "ORDERID" ,
+				referencedColumnName = "ORDERID" ,
+				insertable = false ,
+				updatable = false)
+	private MemberOrderBean memberOrders;
+
+	public MemberOrderBean getMemberOrders() {
+		return memberOrders;
+	}
+
+	public void setMemberOrders(MemberOrderBean memberOrders) {
+		this.memberOrders = memberOrders;
+	}
+
 	public static void main(String[] args) {
 
 		try {
@@ -50,8 +69,11 @@ public class BBQOrderBean implements Serializable {
 			// BBQOrderBean select=(BBQOrderBean)session.get(BBQOrderBean.class, 1);
 			// System.out.println(select);
 
-			// BBQOrderBean select=(BBQOrderBean)session.get(BBQOrderBean.class, 1);
-			// System.out.println(select.getBbqInfos());
+//			 BBQOrderBean select=(BBQOrderBean)session.get(BBQOrderBean.class, 1);
+//			 System.out.println(select.getBbqInfos());
+			
+//			 BBQOrderBean select=(BBQOrderBean)session.get(BBQOrderBean.class, 1);
+//			 System.out.println(select.getMemberOrders());
 
 			/* 查詢全部ok */
 			// SQLQuery query=session.createSQLQuery("select* from BBQOrder");

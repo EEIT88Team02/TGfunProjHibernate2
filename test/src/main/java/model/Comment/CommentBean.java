@@ -1,4 +1,4 @@
-package model;
+package model.Comment;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -14,6 +14,7 @@ import javax.persistence.Table;
 
 import org.hibernate.Session;
 
+import model.Member.MemberBean;
 import model.misc.HibernateUtil;
 
 @Entity

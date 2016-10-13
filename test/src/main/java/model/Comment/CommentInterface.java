@@ -1,9 +1,7 @@
-package model.Interface;
+package model.Comment;
 
 import java.util.Date;
 import java.util.List;
-
-import model.CommentBean;
 
 public interface CommentInterface {
 

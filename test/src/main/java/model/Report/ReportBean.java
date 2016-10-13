@@ -1,4 +1,4 @@
-package model;
+package model.Report;
 
 import java.io.Serializable;
 
@@ -15,6 +15,8 @@ import javax.persistence.UniqueConstraint;
 
 import org.hibernate.Session;
 
+import model.Member.MemberBean;
+import model.Message.MessageBean;
 import model.misc.HibernateUtil;
 
 @Entity

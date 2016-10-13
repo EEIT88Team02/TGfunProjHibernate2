@@ -1,6 +1,5 @@
-package model;
+package model.BBQInfo;
 
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,9 +9,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.hibernate.SQLQuery;
+
 import org.hibernate.Session;
 
+import model.BBQOrder.BBQOrderBean;
 import model.misc.HibernateUtil;
 
 @Entity
@@ -46,11 +46,11 @@ public class BBQInfoBean {
 			Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 
 			/* 查詢單筆OK */
-			// BBQInfoBean select=(BBQInfoBean)session.get(BBQInfoBean.class, 1);
-			// System.out.println(select);
+			 BBQInfoBean select=(BBQInfoBean)session.get(BBQInfoBean.class, 1);
+			 System.out.println(select);
 
-			// BBQInfoBean select=(BBQInfoBean)session.get(BBQInfoBean.class, 1);
-			// System.out.println(select.getBbqOrders());
+//			 BBQInfoBean select=(BBQInfoBean)session.get(BBQInfoBean.class, 1);
+//			 System.out.println(select.getBbqOrders());
 
 			/* 查詢全部 OK */
 			// SQLQuery query=session.createSQLQuery("select* from BBQInfo");
