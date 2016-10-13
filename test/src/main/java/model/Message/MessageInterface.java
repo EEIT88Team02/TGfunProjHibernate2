@@ -1,9 +1,7 @@
-package model.Interface;
+package model.Message;
 
 import java.util.Date;
 import java.util.List;
-
-import model.MessageBean;
 
 public interface MessageInterface {
 

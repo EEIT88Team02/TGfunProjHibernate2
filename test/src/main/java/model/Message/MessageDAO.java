@@ -1,4 +1,4 @@
-package model.dao;
+package model.Message;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -10,8 +10,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.jboss.logging.Message;
 
-import model.MessageBean;
-import model.Interface.MessageInterface;
 import model.misc.HibernateUtil;
 
 public class MessageDAO implements MessageInterface {
@@ -23,7 +21,7 @@ public class MessageDAO implements MessageInterface {
 
 			MessageDAO messageDAO = new MessageDAO(session);
 
-			// System.out.println(messageDAO.selectAll());
+			 System.out.println(messageDAO.selectAll());
 
 			// System.out.println(messageDAO.selectByAskDate("2016-08-08 00:00:00"));
 

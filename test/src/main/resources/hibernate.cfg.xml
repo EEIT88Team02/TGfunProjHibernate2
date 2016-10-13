@@ -12,9 +12,21 @@
         <property name="hibernate.show_sql">true</property>
         <property name="hibernate.current_session_context_class">thread</property>
         
-        <mapping class="model.MemberBean"/>	
-        <mapping class="model.MessageBean"/>
-        <mapping class="model.CommentBean"/>
-        <mapping class="model.ReportBean"/>
+        <mapping class="model.Member.MemberBean"/>	
+        
+        <mapping class="model.MemberOrder.MemberOrderBean"/>                
+        <mapping class="model.RoomInfo.RoomInfoBean"/>
+        <mapping class="model.RoomDeviceInfo.RoomDeviceInfoBean"/>
+        <mapping class="model.DeviceInfo.DeviceInfoBean"/>
+        
+        
+        <mapping class="model.OrderRoomInfo.OrderRoomInfoBean"/>
+        <mapping class="model.BBQOrder.BBQOrderBean"/>
+        <mapping class="model.BBQInfo.BBQInfoBean"/>
+        
+        
+        <mapping class="model.Message.MessageBean"/>
+        <mapping class="model.Comment.CommentBean"/>
+        <mapping class="model.Report.ReportBean"/>
     </session-factory>
 </hibernate-configuration>
