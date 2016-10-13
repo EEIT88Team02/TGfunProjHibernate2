@@ -1,4 +1,4 @@
-package model;
+package model.Member;
 
 import java.util.Arrays;
 import java.util.Set;
@@ -13,6 +13,10 @@ import javax.persistence.Table;
 
 import org.hibernate.Session;
 
+import model.Comment.CommentBean;
+import model.MemberOrder.MemberOrderBean;
+import model.Message.MessageBean;
+import model.Report.ReportBean;
 import model.misc.HibernateUtil;
 
 @Entity
@@ -39,8 +43,7 @@ public class MemberBean {
 	private String ssl;// 是否為SSL認證ssl
 	private int MemberStatus;
 
-	@OneToMany(	mappedBy = "members" ,
-				cascade = { CascadeType.REMOVE })
+	@OneToMany(	mappedBy = "members" )
 	private Set<MessageBean> messages;
 
 	public Set<MessageBean> getMessages() {
@@ -51,8 +54,7 @@ public class MemberBean {
 		this.messages = messages;
 	}
 
-	@OneToMany(	mappedBy = "members" ,
-				cascade = { CascadeType.REMOVE })
+	@OneToMany(	mappedBy = "members" )
 	private Set<ReportBean> reports;
 
 	public Set<ReportBean> getReports() {
@@ -63,8 +65,7 @@ public class MemberBean {
 		this.reports = reports;
 	}
 
-	@OneToMany(	mappedBy = "members" ,
-				cascade = { CascadeType.REMOVE })
+	@OneToMany(	mappedBy = "members" )
 	private Set<CommentBean> comments;
 
 	public Set<CommentBean> getComments() {
@@ -75,8 +76,7 @@ public class MemberBean {
 		this.comments = comments;
 	}
 
-	@OneToMany(	mappedBy = "members" ,
-				cascade = { CascadeType.REMOVE })
+	@OneToMany(	mappedBy = "members")
 	private Set<MemberOrderBean> memberOrders;
 
 	public Set<MemberOrderBean> getMemberOrders() {
@@ -94,17 +94,17 @@ public class MemberBean {
 			Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 
 			// 新增
-			 MemberBean insert = new MemberBean();
-			 insert.setAccount("VVV");
-			 insert.setPwd("!!!456".getBytes());
-			 insert.setName("SSS");
-			 insert.setID("p789456123");
-			 session.save(insert);
-			 System.out.println("insert=" + insert);
+			// MemberBean insert = new MemberBean();
+			// insert.setAccount("VVV");
+			// insert.setPwd("!!!456".getBytes());
+			// insert.setName("SSS");
+			// insert.setID("p789456123");
+			// session.save(insert);
+			// System.out.println("insert=" + insert);
 			//// 查詢
 //			 MemberBean select = (MemberBean) session.get(MemberBean.class,1);
 //			 System.out.println("select="+select);
-			 
+
 //			 MemberBean select = (MemberBean) session.get(MemberBean.class,1);
 //			 System.out.println("select="+select.getMemberOrders());
 			//// 修改

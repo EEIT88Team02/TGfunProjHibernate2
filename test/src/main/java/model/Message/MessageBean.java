@@ -1,4 +1,4 @@
-package model;
+package model.Message;
 
 import java.text.ParseException;
 import java.util.Set;
@@ -13,6 +13,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.hibernate.Session;
+
+import model.Member.MemberBean;
+import model.Report.ReportBean;
 import model.misc.HibernateUtil;
 
 @Entity

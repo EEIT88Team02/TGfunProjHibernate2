@@ -1,4 +1,4 @@
-package model;
+package model.Comment;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -14,6 +14,7 @@ import javax.persistence.Table;
 
 import org.hibernate.Session;
 
+import model.Member.MemberBean;
 import model.misc.HibernateUtil;
 
 @Entity
@@ -57,8 +58,8 @@ public class CommentBean {
 			// CommentBean select = (CommentBean) session.get(CommentBean.class, 1);
 			// System.out.println("select=" + select);
 
-//			 CommentBean select = (CommentBean) session.get(CommentBean.class, 1);
-//			 System.out.println("select=" + select.getMembers());
+			// CommentBean select = (CommentBean) session.get(CommentBean.class, 1);
+			// System.out.println("select=" + select.getMembers());
 
 			// CommentBean select = (CommentBean) session.get(CommentBean.class,1);
 			// select.setReply("hi");

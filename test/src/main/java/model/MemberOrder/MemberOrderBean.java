@@ -1,4 +1,4 @@
-package model;
+package model.MemberOrder;
 
 import java.util.Date;
 import java.util.Iterator;
@@ -20,6 +20,9 @@ import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.type.StandardBasicTypes;
 
+import model.BBQOrder.BBQOrderBean;
+import model.Member.MemberBean;
+import model.OrderRoomInfo.OrderRoomInfoBean;
 import model.misc.HibernateUtil;
 
 @Entity
@@ -31,8 +34,8 @@ public class MemberOrderBean {
 	private int orderID;  // 訂單編號
 	private int memberID; // 會員編號
 	private java.util.Date memberDate;// 會員訂單日期
-	private double memberSum;// 房間金額
 	private double roomTotalSum;
+	private double memberSum;// 房間金額
 	private boolean haveDelete;
 
 	@ManyToOne
@@ -61,6 +64,17 @@ public class MemberOrderBean {
 		OrderRoomInfos = orderRoomInfos;
 	}
 
+	@OneToMany(mappedBy = "memberOrders")
+	private Set<BBQOrderBean> bbqOreders;
+
+	public Set<BBQOrderBean> getBbqOreders() {
+		return bbqOreders;
+	}
+
+	public void setBbqOreders(Set<BBQOrderBean> bbqOreders) {
+		this.bbqOreders = bbqOreders;
+	}
+
 	public static void main(String[] args) {
 
 		try {
@@ -72,9 +86,12 @@ public class MemberOrderBean {
 
 			// MemberOrderBean select = (MemberOrderBean) session.get(MemberOrderBean.class,1);
 			// System.out.println(select.getMembers());
+
+//			 MemberOrderBean select = (MemberOrderBean) session.get(MemberOrderBean.class,1);
+//			 System.out.println(select.getOrderRoomInfos());
 			
-//			MemberOrderBean select = (MemberOrderBean) session.get(MemberOrderBean.class,1);
-//			System.out.println(select.getOrderRoomInfos());
+//			 MemberOrderBean select = (MemberOrderBean) session.get(MemberOrderBean.class,1);
+//			 System.out.println(select.getBbqOreders());
 
 			// List result = session.createSQLQuery("select memberID,MemberDate from MemberOrder")
 			// .addScalar("MemberID",StandardBasicTypes.INTEGER)
@@ -91,11 +108,11 @@ public class MemberOrderBean {
 			// }
 			// }
 
-			// MemberOrderBean insert = new MemberOrderBean();
-			// insert.setMemberID(1);
-			// insert.setMemberDate(new Date());
-			// insert.setMemberSum(150000);
-			// session.save(insert);
+			 MemberOrderBean insert = new MemberOrderBean();
+			 insert.setMemberID(1);
+			 insert.setMemberDate(new Date());
+			 insert.setMemberSum(150000);
+			 session.save(insert);
 
 			/* 修改 */
 			// MemberOrderBean bean = (MemberOrderBean) session.get(MemberOrderBean.class,1);
@@ -140,20 +157,20 @@ public class MemberOrderBean {
 		this.memberDate = memberDate;
 	}
 
-	public double getMemberSum() {
-		return memberSum;
-	}
-
-	public void setMemberSum(double memberSum) {
-		this.memberSum = memberSum;
-	}
-
 	public double getRoomTotalSum() {
 		return roomTotalSum;
 	}
 
 	public void setRoomTotalSum(double roomTotalSum) {
 		this.roomTotalSum = roomTotalSum;
+	}
+
+	public double getMemberSum() {
+		return memberSum;
+	}
+
+	public void setMemberSum(double memberSum) {
+		this.memberSum = memberSum;
 	}
 
 	public boolean isHaveDelete() {

@@ -1,5 +1,6 @@
-package model;
+package model.OrderRoomInfo;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -9,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -17,11 +20,14 @@ import org.hibernate.SQLQuery;
 /*待測*/
 import org.hibernate.Session;
 
+import model.MemberOrder.MemberOrderBean;
+import model.RoomInfo.RoomInfoBean;
 import model.misc.HibernateUtil;
 
 @Entity
-@Table(name = "ORDERROOMINFO")
-public class OrderRoomInfoBean {
+@Table(	name = "ORDERROOMINFO" ,
+		uniqueConstraints = { @UniqueConstraint(columnNames = { "ORDERID", "ROOMCODE" }) })
+public class OrderRoomInfoBean  {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,7 +36,7 @@ public class OrderRoomInfoBean {
 	private int roomCode;// 房間代號
 	private Date inDate;    // 入住日期
 	private Date outDate;   // 退房日期
-	private float roomSum;// 房間金額
+	private double roomSum;// 房間金額
 
 	@ManyToOne
 	@JoinColumn(name = "ORDERID" ,
@@ -47,14 +53,32 @@ public class OrderRoomInfoBean {
 		this.memberOrders = memberOrders;
 	}
 
+	@ManyToOne
+	@JoinColumn(name = "ROOMCODE" ,
+				referencedColumnName = "ROOMCODE" ,
+				insertable = false ,
+				updatable = false)
+	private RoomInfoBean roomInfos;
+
+	public RoomInfoBean getRoomInfos() {
+		return roomInfos;
+	}
+
+	public void setRoomInfos(RoomInfoBean roomInfos) {
+		this.roomInfos = roomInfos;
+	}
+
 	public static void main(String[] args) {
 
 		try {
 			HibernateUtil.getSessionFactory().getCurrentSession().beginTransaction();
 			Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-			/* 新增 */
-//			OrderRoomInfoBean select = (OrderRoomInfoBean) session.get(OrderRoomInfoBean.class,1);
-//			System.out.println(select);
+
+//			 OrderRoomInfoBean select = (OrderRoomInfoBean) session.get(OrderRoomInfoBean.class,1);
+//			 System.out.println(select);
+			
+//			 OrderRoomInfoBean select = (OrderRoomInfoBean) session.get(OrderRoomInfoBean.class,1);
+//			 System.out.println(select.getRoomInfos());
 
 			/* 查詢全部 */
 			// Query query = session.createQuery("from RoomOrderInfoBean");
@@ -128,11 +152,11 @@ public class OrderRoomInfoBean {
 		this.outDate = outDate;
 	}
 
-	public float getRoomSum() {
+	public double getRoomSum() {
 		return roomSum;
 	}
 
-	public void setRoomSum(float roomSum) {
+	public void setRoomSum(double roomSum) {
 		this.roomSum = roomSum;
 	}
 
