@@ -1,6 +1,8 @@
 package model.OrderRoomInfo;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -68,7 +70,7 @@ public class OrderRoomInfoBean  {
 		this.roomInfos = roomInfos;
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ParseException {
 
 		try {
 			HibernateUtil.getSessionFactory().getCurrentSession().beginTransaction();
@@ -81,21 +83,19 @@ public class OrderRoomInfoBean  {
 //			 System.out.println(select.getRoomInfos());
 
 			/* 查詢全部 */
-			// Query query = session.createQuery("from RoomOrderInfoBean");
-			// List<RoomOrderInfoBean> beans = query.list();
-			// System.out.println(beans);
+//			 Query query = session.createQuery("from OrderRoomInfoBean");
+//			 List<OrderRoomInfoBean> beans = query.list();
+//			 System.out.println(beans);
 
 			/* 新增 */
-			// RoomOrderInfoBean insert=new RoomOrderInfoBean();
-			// insert.setRoomID(1);
-			// insert.setRoomCode(101);
-			// insert.setRoomSum(25000);
-			// session.save(insert);
-
-			/* 修改 */
-			// RoomOrderInfoBean bean=(RoomOrderInfoBean)session.get(RoomOrderInfoBean.class,1);
-			// bean.setRoomCode(102);
-			// bean.setRoomSum(22000);
+//			 OrderRoomInfoBean insert=new OrderRoomInfoBean();
+//			 insert.setOrderID(2);
+//			 insert.setRoomCode(102);
+//			 insert.setRoomSum(25000);
+//			 SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd");			 
+//			 insert.setInDate(dateFormat.parse("2016-10-14"));
+//			 insert.setOutDate(dateFormat.parse("2016-11-15"));
+//			 session.save(insert);
 
 			HibernateUtil.getSessionFactory().getCurrentSession().getTransaction().commit();
 		}

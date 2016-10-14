@@ -1,6 +1,5 @@
 package model.RoomInfo;
 
-
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Set;
@@ -43,18 +42,15 @@ public class RoomInfoBean {
 		this.orderRoomInfos = orderRoomInfos;
 	}
 
-	@ManyToOne
-	@JoinColumn(name = "ROOMCODE" ,
-				referencedColumnName = "ROOMCODE" ,
-				insertable = false ,
-				updatable = false)
-	private RoomDeviceInfoBean roomDeviceInfos;
 
-	public RoomDeviceInfoBean getRoomDeviceInfos() {
+	@OneToMany(mappedBy = "roomInfos")
+	private Set<RoomDeviceInfoBean> roomDeviceInfos;
+
+	public Set<RoomDeviceInfoBean> getRoomDeviceInfos() {
 		return roomDeviceInfos;
 	}
 
-	public void setRoomDeviceInfos(RoomDeviceInfoBean roomDeviceInfos) {
+	public void setRoomDeviceInfos(Set<RoomDeviceInfoBean> roomDeviceInfos) {
 		this.roomDeviceInfos = roomDeviceInfos;
 	}
 
@@ -70,8 +66,8 @@ public class RoomInfoBean {
 			// RoomInfoBean select=(RoomInfoBean)session.get(RoomInfoBean.class, 101);
 			// System.out.println(select.getOrderRoomInfos());
 
-//			 RoomInfoBean select = (RoomInfoBean) session.get(RoomInfoBean.class,101);
-//			 System.out.println(select.getRoomDeviceInfos());
+			// RoomInfoBean select = (RoomInfoBean) session.get(RoomInfoBean.class,101);
+			// System.out.println(select.getRoomDeviceInfos());
 
 			/* 查詢全部資訊ok */
 			// SQLQuery query=session.createSQLQuery("select * from RoomInfo");

@@ -1,6 +1,7 @@
 package model.RoomDeviceInfo;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -31,14 +32,18 @@ public class RoomDeviceInfoBean implements Serializable {
 	private int roomCode;
 	private int deviceID;
 
-	@OneToMany(mappedBy = "roomDeviceInfos")
-	private Set<RoomInfoBean> roomInfos;
+	@ManyToOne
+	@JoinColumn(name = "ROOMCODE" ,
+				referencedColumnName = "ROOMCODE" ,
+				insertable = false ,
+				updatable = false)
+	private RoomInfoBean roomInfos;
 
-	public Set<RoomInfoBean> getRoomInfos() {
+	public RoomInfoBean getRoomInfos() {
 		return roomInfos;
 	}
 
-	public void setRoomInfos(Set<RoomInfoBean> roomInfos) {
+	public void setRoomInfos(RoomInfoBean roomInfos) {
 		this.roomInfos = roomInfos;
 	}
 
@@ -65,8 +70,8 @@ public class RoomDeviceInfoBean implements Serializable {
 			// RoomDeviceInfoBean select=(RoomDeviceInfoBean)session.get(RoomDeviceInfoBean.class, 1);
 			// System.out.println(select);
 
-			// RoomDeviceInfoBean select=(RoomDeviceInfoBean)session.get(RoomDeviceInfoBean.class, 1);
-			// System.out.println(select.getRoomInfos());
+//			RoomDeviceInfoBean select = (RoomDeviceInfoBean) session.get(RoomDeviceInfoBean.class,1);
+//			System.out.println(select.getRoomInfos());
 
 //			 RoomDeviceInfoBean select=(RoomDeviceInfoBean)session.get(RoomDeviceInfoBean.class, 1);
 //			 System.out.println(select.getDeviceInfos());

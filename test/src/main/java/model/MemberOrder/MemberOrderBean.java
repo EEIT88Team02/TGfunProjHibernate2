@@ -81,11 +81,11 @@ public class MemberOrderBean {
 			HibernateUtil.getSessionFactory().getCurrentSession().beginTransaction();
 			Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 
-			// MemberOrderBean select = (MemberOrderBean) session.get(MemberOrderBean.class,1);
-			// System.out.println(select);
+//			 MemberOrderBean select = (MemberOrderBean) session.get(MemberOrderBean.class,1);
+//			 System.out.println(select);
 
-			// MemberOrderBean select = (MemberOrderBean) session.get(MemberOrderBean.class,1);
-			// System.out.println(select.getMembers());
+//			 MemberOrderBean select = (MemberOrderBean) session.get(MemberOrderBean.class,1);
+//			 System.out.println(select.getMembers());
 
 //			 MemberOrderBean select = (MemberOrderBean) session.get(MemberOrderBean.class,1);
 //			 System.out.println(select.getOrderRoomInfos());
@@ -108,11 +108,11 @@ public class MemberOrderBean {
 			// }
 			// }
 
-			// MemberOrderBean insert = new MemberOrderBean();
-			// insert.setMemberID(1);
-			// insert.setMemberDate(new Date());
-			// insert.setMemberSum(150000);
-			// session.save(insert);
+//			 MemberOrderBean insert = new MemberOrderBean();
+//			 insert.setMemberID(1);
+//			 insert.setMemberDate(new Date());
+//			 insert.setMemberSum(150000);
+//			 session.save(insert);
 
 			/* 修改 */
 			// MemberOrderBean bean = (MemberOrderBean) session.get(MemberOrderBean.class,1);
