@@ -1,4 +1,4 @@
-package model.Member;
+package tgfunBean;
 
 import java.util.Arrays;
 import java.util.Set;
