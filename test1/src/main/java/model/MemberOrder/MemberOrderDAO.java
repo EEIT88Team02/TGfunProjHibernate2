@@ -1,8 +1,6 @@
 package model.MemberOrder;
 
-
 import java.text.ParseException;
-
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -20,21 +18,16 @@ public class MemberOrderDAO implements MemberOrderInterface {
 			Session session = HibernateUtil.getSessionFactory().getCurrentSession();			
 			
 //			MemberOrderDAO dao = new MemberOrderDAO(session);
-
 //			List<MemberOrderBean> result=dao.selectByMemberID(1);
 //			for(MemberOrderBean bean:result){
 //					System.out.println(bean);
 //			}
-
-			
 			
 //			MemberOrderDAO dao = new MemberOrderDAO(session);
-
 //			List<MemberOrderBean> result=dao.selectByHaveDelete(1,false);
 //						for(MemberOrderBean bean:result){
 //			System.out.println(bean);
 //	}
-
 			
 			
 //			MemberOrderDAO dao = new MemberOrderDAO(session);
@@ -81,7 +74,6 @@ public class MemberOrderDAO implements MemberOrderInterface {
 
 	@SuppressWarnings("unchecked")
 	@Override
-
 	public List<MemberOrderBean> selectByMemberID(int memberID) {
 		String select_by_memberID = 
 				"FROM MemberOrderBean WHERE memberID =:memberID ORDER BY memberDate DESC";
@@ -94,7 +86,6 @@ public class MemberOrderDAO implements MemberOrderInterface {
 
 	@SuppressWarnings("unchecked")
 	@Override
-
 	public List<MemberOrderBean> selectByHaveDelete(int memberID, boolean haveDelete) {
 		String select_by_haveDelete = 
 							"FROM MemberOrderBean WHERE memberID =:memberID AND haveDelete = :haveDelete ORDER BY memberDate DESC";
@@ -108,7 +99,6 @@ public class MemberOrderDAO implements MemberOrderInterface {
 
 	@SuppressWarnings("unchecked")
 	@Override
-
 	public List<MemberOrderBean> selecTByDateRange(int memberID,String firstDate,String lastDate) {
 		String select_by_dateRange = 
 			"from MemberOrderBean m where m.memberID = :memberID AND m.memberDate between convert(datetime,(:firstDate +' 00:00:00')) AND CONVERT(datetime,(:lastDate + ' 23:59:59.997'))";
@@ -117,14 +107,12 @@ public class MemberOrderDAO implements MemberOrderInterface {
 									.setInteger("memberID",memberID)
 									.setString("firstDate",firstDate)
 									.setString("lastDate",lastDate)
-
 									.list();	
 		return result;
 	}
 
 	@Override
 	public MemberOrderBean insert(MemberOrderBean memberOrderBean) {
-
 		int id= memberOrderBean.getOrderID();
 		MemberOrderBean bean=session.get(MemberOrderBean.class,id);
 		if(bean==null){
@@ -132,15 +120,12 @@ public class MemberOrderDAO implements MemberOrderInterface {
 		return bean;
 		}
 		return null;
-
 	}
 
 	@Override
-
 	public MemberOrderBean update(MemberOrderBean memberOrderBean) {
 			this.getSession().saveOrUpdate(memberOrderBean);
 			return memberOrderBean;
-
 	}
 
 }
