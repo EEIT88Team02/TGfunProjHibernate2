@@ -13,7 +13,8 @@ import javax.persistence.Table;
 
 import org.hibernate.Session;
 
-import model.Article.ArticleBean;
+import model.MemberOrder.MemberOrderBean;
+import model.Message.MessageBean;
 import model.Report.ReportBean;
 import model.misc.HibernateUtil;
 
@@ -38,23 +39,21 @@ public class MemberBean {
 	private int vip;// VIP等級
 	private int Bonus;// 紅利(可消費)
 	private int TotalBonus;// 累積紅利(固定)
-	private boolean ssl;// 是否為SSL認證ssl
+	private String ssl;// 是否為SSL認證ssl
 	private int MemberStatus;
 
-	@OneToMany(	mappedBy = "members" ,
-				cascade = { CascadeType.REMOVE })
-	private Set<ArticleBean> messages;
+	@OneToMany(	mappedBy = "members" )
+	private Set<MessageBean> messages;
 
-	public Set<ArticleBean> getMessages() {
+	public Set<MessageBean> getMessages() {
 		return messages;
 	}
 
-	public void setMessages(Set<ArticleBean> messages) {
+	public void setMessages(Set<MessageBean> messages) {
 		this.messages = messages;
 	}
 
-	@OneToMany(	mappedBy = "members" ,
-				cascade = { CascadeType.REMOVE })
+	@OneToMany(	mappedBy = "members" )
 	private Set<ReportBean> reports;
 
 	public Set<ReportBean> getReports() {
@@ -65,13 +64,16 @@ public class MemberBean {
 		this.reports = reports;
 	}
 
-	
 
-	@Override
-	public String toString() {
-		return "MemberBean [memberID=" + memberID + ", account=" + account + ", pwd=" + Arrays.toString(pwd) + ", name=" + name + ", sex=" + sex + ", birthday=" + birthday + ", ID=" + ID + ", email="
-				+ email + ", Celphone=" + Celphone + ", Telephone=" + Telephone + ", address=" + address + ", photo=" + Arrays.toString(photo) + ", vip=" + vip + ", Bonus=" + Bonus + ", TotalBonus="
-				+ TotalBonus  +"]";
+	@OneToMany(	mappedBy = "members")
+	private Set<MemberOrderBean> memberOrders;
+
+	public Set<MemberOrderBean> getMemberOrders() {
+		return memberOrders;
+	}
+
+	public void setMemberOrders(Set<MemberOrderBean> memberOrders) {
+		this.memberOrders = memberOrders;
 	}
 
 	public static void main(String[] args) {
@@ -90,7 +92,10 @@ public class MemberBean {
 			// System.out.println("insert=" + insert);
 			//// 查詢
 //			 MemberBean select = (MemberBean) session.get(MemberBean.class,1);
-//			 System.out.println("select="+select.getReports());
+//			 System.out.println("select="+select);
+
+//			 MemberBean select = (MemberBean) session.get(MemberBean.class,1);
+//			 System.out.println("select="+select.getMemberOrders());
 			//// 修改
 			// MemberBean update =(MemberBean) session.get(MemberBean.class,6);
 			// update.setAccount("EEE");
@@ -108,176 +113,147 @@ public class MemberBean {
 		}
 	}
 
-	
+	@Override
+	public String toString() {
+		return "MemberBean [memberID=" + memberID + ", account=" + account + ", pwd=" + Arrays.toString(pwd) + ", name=" + name + ", sex=" + sex + ", birthday=" + birthday + ", ID=" + ID + ", email="
+				+ email + ", Celphone=" + Celphone + ", Telephone=" + Telephone + ", address=" + address + ", photo=" + Arrays.toString(photo) + ", vip=" + vip + ", Bonus=" + Bonus + ", TotalBonus="
+				+ TotalBonus + ", ssl=" + ssl + ", MemberStatus=" + MemberStatus + "]";
+	}
+
 	public int getMemberID() {
 		return memberID;
 	}
 
-	
 	public void setMemberID(int memberID) {
 		this.memberID = memberID;
 	}
 
-	
 	public String getAccount() {
 		return account;
 	}
 
-	
 	public void setAccount(String account) {
 		this.account = account;
 	}
 
-	
 	public byte[] getPwd() {
 		return pwd;
 	}
 
-	
 	public void setPwd(byte[] pwd) {
 		this.pwd = pwd;
 	}
 
-	
 	public String getName() {
 		return name;
 	}
 
-	
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	
 	public String getSex() {
 		return sex;
 	}
 
-	
 	public void setSex(String sex) {
 		this.sex = sex;
 	}
 
-	
 	public java.util.Date getBirthday() {
 		return birthday;
 	}
 
-	
 	public void setBirthday(java.util.Date birthday) {
 		this.birthday = birthday;
 	}
 
-	
 	public String getID() {
 		return ID;
 	}
 
-	
 	public void setID(String iD) {
 		ID = iD;
 	}
 
-	
 	public String getEmail() {
 		return email;
 	}
 
-	
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
-	
 	public String getCelphone() {
 		return Celphone;
 	}
 
-	
 	public void setCelphone(String celphone) {
 		Celphone = celphone;
 	}
 
-	
 	public String getTelephone() {
 		return Telephone;
 	}
 
-	
 	public void setTelephone(String telephone) {
 		Telephone = telephone;
 	}
 
-	
 	public String getAddress() {
 		return address;
 	}
 
-	
 	public void setAddress(String address) {
 		this.address = address;
 	}
 
-	
 	public byte[] getPhoto() {
 		return photo;
 	}
 
-	
 	public void setPhoto(byte[] photo) {
 		this.photo = photo;
 	}
 
-	
 	public int getVip() {
 		return vip;
 	}
 
-	
 	public void setVip(int vip) {
 		this.vip = vip;
 	}
 
-	
 	public int getBonus() {
 		return Bonus;
 	}
 
-	
 	public void setBonus(int bonus) {
 		Bonus = bonus;
 	}
 
-	
 	public int getTotalBonus() {
 		return TotalBonus;
 	}
 
-	
 	public void setTotalBonus(int totalBonus) {
 		TotalBonus = totalBonus;
 	}
 
-	
-	public boolean isSsl() {
+	public String getSsl() {
 		return ssl;
 	}
 
-	
-	public void setSsl(boolean ssl) {
+	public void setSsl(String ssl) {
 		this.ssl = ssl;
 	}
 
-	
 	public int getMemberStatus() {
 		return MemberStatus;
 	}
 
-	
 	public void setMemberStatus(int memberStatus) {
 		MemberStatus = memberStatus;
 	}
-
-	
 
 }

@@ -18,7 +18,7 @@ import org.hibernate.Session;
 import model.Message.MessageBean;
 import model.Report.ReportBean;
 import model.misc.HibernateUtil;
-import tgfunBean.MemberBean;
+import model.Member.MemberBean;
 
 @Entity
 @Table(name = "Article")
@@ -46,7 +46,7 @@ public class ArticleBean {
 	public String toString() {
 		return "ArticleBean [ArtCode=" + ArtCode + ", memberID=" + memberID + ", ReportCount=" + ReportCount + ", ArtTopic=" + ArtTopic + ", ArtContent=" + ArtContent + ", ArtDate=" + ArtDate
 				+ ", appealDate=" + appealDate + ", HaveAppeal=" + HaveAppeal + ", AppealContent=" + AppealContent + ", HaveProcess=" + HaveProcess + ", ProcessDate=" + ProcessDate + ", ReportReply="
-				+ ReportReply + ", haveDelete=" + haveDelete + ", reports=" + reports +  ", members=" + members + "]";
+				+ ReportReply + ", haveDelete=" + haveDelete + "]";
 	}
 
 	public int getArtCode() {

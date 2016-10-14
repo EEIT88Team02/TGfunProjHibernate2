@@ -16,7 +16,7 @@ import org.hibernate.Session;
 
 import model.Article.ArticleBean;
 import model.misc.HibernateUtil;
-import tgfunBean.MemberBean;
+import model.Member.MemberBean;
 
 @Entity
 @Table(name = "Message")

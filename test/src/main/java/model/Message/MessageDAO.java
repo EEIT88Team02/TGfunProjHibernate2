@@ -8,7 +8,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 
 import model.misc.HibernateUtil;
-import tgfunBean.MemberBean;
+import model.Member.MemberBean;
 
 public class MessageDAO implements MessageInterface  {
      private Session session=null;
