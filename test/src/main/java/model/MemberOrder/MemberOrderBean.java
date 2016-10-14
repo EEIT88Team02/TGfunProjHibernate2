@@ -87,7 +87,7 @@ public class MemberOrderBean {
 //			 MemberOrderBean select = (MemberOrderBean) session.get(MemberOrderBean.class,1);
 //			 System.out.println(select.getMembers());
 
-//			 MemberOrderBean select = (MemberOrderBean) session.get(MemberOrderBean.class,1);
+//			 MemberOrderBean select = (MemberOrderBean) session.get(MemberOrderBean.class,2);
 //			 System.out.println(select.getOrderRoomInfos());
 			
 //			 MemberOrderBean select = (MemberOrderBean) session.get(MemberOrderBean.class,1);

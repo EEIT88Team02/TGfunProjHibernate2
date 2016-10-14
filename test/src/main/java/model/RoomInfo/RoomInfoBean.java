@@ -63,11 +63,11 @@ public class RoomInfoBean {
 			// RoomInfoBean select=(RoomInfoBean)session.get(RoomInfoBean.class, 101);
 			// System.out.println(select);
 
-			// RoomInfoBean select=(RoomInfoBean)session.get(RoomInfoBean.class, 101);
-			// System.out.println(select.getOrderRoomInfos());
+//			 RoomInfoBean select=(RoomInfoBean)session.get(RoomInfoBean.class, 101);
+//			 System.out.println(select.getOrderRoomInfos());
 
-			// RoomInfoBean select = (RoomInfoBean) session.get(RoomInfoBean.class,101);
-			// System.out.println(select.getRoomDeviceInfos());
+//			 RoomInfoBean select = (RoomInfoBean) session.get(RoomInfoBean.class,101);
+//			 System.out.println(select.getRoomDeviceInfos());
 
 			/* 查詢全部資訊ok */
 			// SQLQuery query=session.createSQLQuery("select * from RoomInfo");
