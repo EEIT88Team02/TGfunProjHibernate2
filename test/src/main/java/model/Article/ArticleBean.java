@@ -46,7 +46,7 @@ public class ArticleBean {
 	public String toString() {
 		return "ArticleBean [ArtCode=" + ArtCode + ", memberID=" + memberID + ", ReportCount=" + ReportCount + ", ArtTopic=" + ArtTopic + ", ArtContent=" + ArtContent + ", ArtDate=" + ArtDate
 				+ ", appealDate=" + appealDate + ", HaveAppeal=" + HaveAppeal + ", AppealContent=" + AppealContent + ", HaveProcess=" + HaveProcess + ", ProcessDate=" + ProcessDate + ", ReportReply="
-				+ ReportReply + ", haveDelete=" + haveDelete + ", reports=" + reports +  ", members=" + members + "]";
+				+ ReportReply + ", haveDelete=" + haveDelete + "]";
 	}
 
 	public int getArtCode() {
