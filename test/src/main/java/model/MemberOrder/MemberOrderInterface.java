@@ -6,11 +6,9 @@ import java.util.List;
 
 public interface MemberOrderInterface {
 
-	public abstract List<MemberOrderBean> selectByMemberID(int memberID);
-
 	public abstract List<MemberOrderBean> selectByHaveDelete(int memberID, boolean haveDelete);
 
-	public abstract List<MemberOrderBean> selecTByMemberDate(Date memberDate);
+	public abstract List<MemberOrderBean> selecTByMemberDate(int memberID,String memberDate);
 
 	public abstract MemberOrderBean insert(MemberOrderBean memberOrderBean);
 
