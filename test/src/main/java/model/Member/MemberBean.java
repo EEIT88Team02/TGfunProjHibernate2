@@ -14,6 +14,7 @@ import javax.persistence.Table;
 import org.hibernate.Session;
 
 import model.Article.ArticleBean;
+import model.MemberOrder.MemberOrderBean;
 import model.Report.ReportBean;
 import model.misc.HibernateUtil;
 
@@ -65,13 +66,15 @@ public class MemberBean {
 		this.reports = reports;
 	}
 
-	
+	@OneToMany(mappedBy = "members")
+	private Set<MemberOrderBean> memberOrders;
 
-	@Override
-	public String toString() {
-		return "MemberBean [memberID=" + memberID + ", account=" + account + ", pwd=" + Arrays.toString(pwd) + ", name=" + name + ", sex=" + sex + ", birthday=" + birthday + ", ID=" + ID + ", email="
-				+ email + ", Celphone=" + Celphone + ", Telephone=" + Telephone + ", address=" + address + ", photo=" + Arrays.toString(photo) + ", vip=" + vip + ", Bonus=" + Bonus + ", TotalBonus="
-				+ TotalBonus  +"]";
+	public Set<MemberOrderBean> getMemberOrders() {
+		return memberOrders;
+	}
+
+	public void setMemberOrders(Set<MemberOrderBean> memberOrders) {
+		this.memberOrders = memberOrders;
 	}
 
 	public static void main(String[] args) {
@@ -89,8 +92,8 @@ public class MemberBean {
 			// session.save(insert);
 			// System.out.println("insert=" + insert);
 			//// 查詢
-//			 MemberBean select = (MemberBean) session.get(MemberBean.class,1);
-//			 System.out.println("select="+select.getReports());
+			// MemberBean select = (MemberBean) session.get(MemberBean.class,1);
+			// System.out.println("select="+select.getReports());
 			//// 修改
 			// MemberBean update =(MemberBean) session.get(MemberBean.class,6);
 			// update.setAccount("EEE");
@@ -108,176 +111,147 @@ public class MemberBean {
 		}
 	}
 
-	
+	@Override
+	public String toString() {
+		return "MemberBean [memberID=" + memberID + ", account=" + account + ", pwd=" + Arrays.toString(pwd) + ", name=" + name + ", sex=" + sex + ", birthday=" + birthday + ", ID=" + ID + ", email="
+				+ email + ", Celphone=" + Celphone + ", Telephone=" + Telephone + ", address=" + address + ", photo=" + Arrays.toString(photo) + ", vip=" + vip + ", Bonus=" + Bonus + ", TotalBonus="
+				+ TotalBonus + "]";
+	}
+
 	public int getMemberID() {
 		return memberID;
 	}
 
-	
 	public void setMemberID(int memberID) {
 		this.memberID = memberID;
 	}
 
-	
 	public String getAccount() {
 		return account;
 	}
 
-	
 	public void setAccount(String account) {
 		this.account = account;
 	}
 
-	
 	public byte[] getPwd() {
 		return pwd;
 	}
 
-	
 	public void setPwd(byte[] pwd) {
 		this.pwd = pwd;
 	}
 
-	
 	public String getName() {
 		return name;
 	}
 
-	
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	
 	public String getSex() {
 		return sex;
 	}
 
-	
 	public void setSex(String sex) {
 		this.sex = sex;
 	}
 
-	
 	public java.util.Date getBirthday() {
 		return birthday;
 	}
 
-	
 	public void setBirthday(java.util.Date birthday) {
 		this.birthday = birthday;
 	}
 
-	
 	public String getID() {
 		return ID;
 	}
 
-	
 	public void setID(String iD) {
 		ID = iD;
 	}
 
-	
 	public String getEmail() {
 		return email;
 	}
 
-	
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
-	
 	public String getCelphone() {
 		return Celphone;
 	}
 
-	
 	public void setCelphone(String celphone) {
 		Celphone = celphone;
 	}
 
-	
 	public String getTelephone() {
 		return Telephone;
 	}
 
-	
 	public void setTelephone(String telephone) {
 		Telephone = telephone;
 	}
 
-	
 	public String getAddress() {
 		return address;
 	}
 
-	
 	public void setAddress(String address) {
 		this.address = address;
 	}
 
-	
 	public byte[] getPhoto() {
 		return photo;
 	}
 
-	
 	public void setPhoto(byte[] photo) {
 		this.photo = photo;
 	}
 
-	
 	public int getVip() {
 		return vip;
 	}
 
-	
 	public void setVip(int vip) {
 		this.vip = vip;
 	}
 
-	
 	public int getBonus() {
 		return Bonus;
 	}
 
-	
 	public void setBonus(int bonus) {
 		Bonus = bonus;
 	}
 
-	
 	public int getTotalBonus() {
 		return TotalBonus;
 	}
 
-	
 	public void setTotalBonus(int totalBonus) {
 		TotalBonus = totalBonus;
 	}
 
-	
 	public boolean isSsl() {
 		return ssl;
 	}
 
-	
 	public void setSsl(boolean ssl) {
 		this.ssl = ssl;
 	}
 
-	
 	public int getMemberStatus() {
 		return MemberStatus;
 	}
 
-	
 	public void setMemberStatus(int memberStatus) {
 		MemberStatus = memberStatus;
 	}
-
-	
 
 }
