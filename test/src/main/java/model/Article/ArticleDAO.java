@@ -16,7 +16,7 @@ import org.hibernate.Session;
 
 import model.Message.MessageDAO;
 import model.misc.HibernateUtil;
-import tgfunBean.MemberBean;
+import model.Member.MemberBean;
 
 public class ArticleDAO implements ArticleInterface{
 
