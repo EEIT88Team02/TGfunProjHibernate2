@@ -65,14 +65,14 @@ public class MemberOrderBean {
 	}
 
 	@OneToMany(mappedBy = "memberOrders")
-	private Set<BBQOrderBean> bbqOreders;
+	private Set<BBQOrderBean> bbqOrders;
 
-	public Set<BBQOrderBean> getBbqOreders() {
-		return bbqOreders;
+	public Set<BBQOrderBean> getBbqOrders() {
+		return bbqOrders;
 	}
 
-	public void setBbqOreders(Set<BBQOrderBean> bbqOreders) {
-		this.bbqOreders = bbqOreders;
+	public void setBbqOrders(Set<BBQOrderBean> bbqOrders) {
+		this.bbqOrders = bbqOrders;
 	}
 
 	public static void main(String[] args) {

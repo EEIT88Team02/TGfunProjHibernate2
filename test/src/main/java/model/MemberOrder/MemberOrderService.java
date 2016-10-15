@@ -12,6 +12,8 @@ public class MemberOrderService {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		memberOrderDAO = new MemberOrderDAO(session);
 	}
+	
+	
 
 	public static void main(String[] args) {
 

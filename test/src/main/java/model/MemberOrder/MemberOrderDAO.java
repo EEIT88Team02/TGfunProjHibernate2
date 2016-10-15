@@ -10,6 +10,8 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
+import model.BBQOrder.BBQOrderBean;
+import model.OrderRoomInfo.OrderRoomInfoBean;
 import model.misc.HibernateUtil;
 
 public class MemberOrderDAO implements MemberOrderInterface {
@@ -19,12 +21,31 @@ public class MemberOrderDAO implements MemberOrderInterface {
 			HibernateUtil.getSessionFactory().getCurrentSession().beginTransaction();
 			Session session = HibernateUtil.getSessionFactory().getCurrentSession();			
 			
-//			MemberOrderDAO dao = new MemberOrderDAO(session);
-
-//			List<MemberOrderBean> result=dao.selectByMemberID(1);
-//			for(MemberOrderBean bean:result){
-//					System.out.println(bean);
-//			}
+			MemberOrderDAO dao = new MemberOrderDAO(session);
+			List<Object[]> data=dao.selectByMemberID(1);
+			
+//			Object[] array=data.get(0);			
+//			OrderRoomInfoBean orderRoomInfoBean=(OrderRoomInfoBean) array[2];
+//			System.out.println(orderRoomInfoBean);
+			
+//			BBQOrderBean bbqOrderBean=(BBQOrderBean) array[2];
+//			System.out.println(bbqOrderBean);
+			System.out.println(data.size());
+			for(int i=0;i<data.size();i++){
+				Object[] array=data.get(i);
+				MemberOrderBean memberOrderBean=(MemberOrderBean) array[0];
+				if(data.get(i)==data.get(0)){
+				System.out.println(memberOrderBean);
+				continue;
+				}
+				if(data.get(0)[0]==data.get(i+1)[0]){
+					System.out.println(i);		
+				}else{
+					System.out.println(i);
+					System.out.println(memberOrderBean);
+				}
+			}
+			
 
 			
 			
@@ -82,10 +103,10 @@ public class MemberOrderDAO implements MemberOrderInterface {
 	@SuppressWarnings("unchecked")
 	@Override
 
-	public List<MemberOrderBean> selectByMemberID(int memberID) {
+	public List<Object[]> selectByMemberID(int memberID) {
 		String select_by_memberID = 
-				"FROM MemberOrderBean WHERE memberID =:memberID ORDER BY memberDate DESC";
-		List<MemberOrderBean> result =this.getSession()
+				"SELECT MO , ORI , BO FROM MemberOrderBean MO FULL JOIN MO.OrderRoomInfos ORI FULL JOIN MO.bbqOrders BO WHERE MO.memberID =:memberID ORDER BY MO.memberDate DESC";
+		List<Object[]> result =this.getSession()
 							.createQuery(select_by_memberID)
 							.setInteger("memberID",memberID)
 							.list();

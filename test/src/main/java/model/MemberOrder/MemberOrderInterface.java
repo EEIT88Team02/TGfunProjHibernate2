@@ -7,7 +7,7 @@ import java.util.List;
 public interface MemberOrderInterface {
 
 	
-	public abstract List<MemberOrderBean> selectByMemberID(int memberID);
+	public abstract List<Object[]> selectByMemberID(int memberID);
 	
 
 	public abstract List<MemberOrderBean> selectByHaveDelete(int memberID, boolean haveDelete);
