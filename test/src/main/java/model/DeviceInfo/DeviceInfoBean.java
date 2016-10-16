@@ -42,8 +42,8 @@ public class DeviceInfoBean {
 			HibernateUtil.getSessionFactory().getCurrentSession().beginTransaction();
 			Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 			/* 查詢單筆ok */
-			// DeviceInfoBean select = (DeviceInfoBean) session.get(DeviceInfoBean.class,1);
-			// System.out.println(select);
+//			 DeviceInfoBean select = (DeviceInfoBean) session.get(DeviceInfoBean.class,2);
+//			 System.out.println(select);
 
 			// DeviceInfoBean select=(DeviceInfoBean)session.get(DeviceInfoBean.class, 1);
 			// System.out.println(select.getRoomDeviceInfos());

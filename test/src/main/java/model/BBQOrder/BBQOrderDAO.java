@@ -19,16 +19,10 @@ public class BBQOrderDAO implements BBQOrderInterface {
 			Session session = HibernateUtil.getSessionFactory().getCurrentSession();			
 			
 //			BBQOrderDAO dao = new BBQOrderDAO(session);
-//			List<BBQOrderBean> result=dao.selectByOrderID(1);
+//			List<BBQOrderBean> result=dao.selectByOrderID(1,true);
 //			for(BBQOrderBean bean:result){
 //					System.out.println(bean);
-//			}			
-			
-//			BBQOrderDAO dao = new BBQOrderDAO(session);
-//			List<BBQOrderBean> result=dao.selectByHaveDelete(true);
-//			for(BBQOrderBean bean:result){
-//							System.out.println(bean);
-//			}
+//			}				
 			
 //			BBQOrderDAO dao=new BBQOrderDAO(session);
 //			BBQOrderBean bbqOrderBean=new BBQOrderBean();
@@ -66,39 +60,31 @@ public class BBQOrderDAO implements BBQOrderInterface {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<BBQOrderBean> selectByOrderID(int orderID) {
-		String select_by_orderID = "FROM BBQOrderBean WHERE orderID =:orderID";
+	public List<BBQOrderBean> selectByOrderID(int orderID,boolean haveDelete) {
+		String select_by_orderID = "FROM BBQOrderBean WHERE orderID =:orderID AND haveDelete=:haveDelete";
 		List<BBQOrderBean> result =this.getSession()
 									.createQuery(select_by_orderID)
 									.setInteger("orderID",orderID)
+									.setBoolean("haveDelete",haveDelete)
 									.list();
 		return result;
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
-	public List<BBQOrderBean> selectByHaveDelete(boolean haveDelete) {
-		String select_by_haveDelete = "FROM BBQOrderBean WHERE haveDelete = :haveDelete ORDER BY bbqDate DESC";
-		List<BBQOrderBean> result =this.getSession()
-										.createQuery(select_by_haveDelete)										
-										.setBoolean("haveDelete",haveDelete)
-										.list();
-		return result;
-	}
+	public boolean insert(BBQOrderBean bbqOrderBean) {
 
-	@Override
-	public BBQOrderBean insert(BBQOrderBean bbqOrderBean) {
-		int id= bbqOrderBean.getBbqID();
-		BBQOrderBean bean=session.get(BBQOrderBean.class,id);
-		if(bean==null){
-		this.getSession().save(bbqOrderBean);		
-		return bean;
+		try {
+			this.getSession().save(bbqOrderBean);
 		}
-		return null;
+		catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
 	}
 
 	@Override
-	public BBQOrderBean update(BBQOrderBean bbqOrderBean) {
+	public BBQOrderBean updateHaveDelete(BBQOrderBean bbqOrderBean) {
 		this.getSession().saveOrUpdate(bbqOrderBean);
 		return bbqOrderBean;
 	}

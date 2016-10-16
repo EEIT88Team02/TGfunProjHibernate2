@@ -24,8 +24,6 @@ public class DeviceInfoDAO implements DeviceInfoInterface {
 		finally {
 			HibernateUtil.closeSessionFactory();
 		}
-
-
 	}
 
 	private Session session = null;

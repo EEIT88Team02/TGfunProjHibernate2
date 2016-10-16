@@ -63,14 +63,17 @@ public class OrderRoomInfoDAO implements OrderRoomInfoInterface{
 	}
 
 	@Override
-	public OrderRoomInfoBean insert(OrderRoomInfoBean orderRoomInfoBean) {
-		int id= orderRoomInfoBean.getOrderID();
-		OrderRoomInfoBean bean=(OrderRoomInfoBean) session.get(OrderRoomInfoBean.class,id);
-		if(bean==null){
-		this.getSession().save(orderRoomInfoBean);		
-		return bean;
+	public boolean insert(OrderRoomInfoBean orderRoomInfoBean) {
+
+		try {
+			this.getSession().save(orderRoomInfoBean);
+			return true;
 		}
-		return null;
+		catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+
 	}
 
 }
