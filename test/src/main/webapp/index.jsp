@@ -8,6 +8,7 @@
 <body>
 <h3><a href="<c:url value="/Login/Login.jsp"/>">Login</a></h3>
 <h3><a href="<c:url value="/Login/Insert.jsp"/>">Insert</a></h3>
+<h3><a href="<c:url value="/Order/OrderRoom.jsp"/>">OrderRoom</a></h3>
   <table>
    <tr>
     <td><img src="Kaptcha.jpg"></td>

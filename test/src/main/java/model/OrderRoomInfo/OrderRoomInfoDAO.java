@@ -7,6 +7,7 @@ import java.util.List;
 import org.hibernate.Session;
 
 import model.MemberOrder.MemberOrderBean;
+import model.MemberOrder.MemberOrderDAO;
 import model.misc.HibernateUtil;
 
 public class OrderRoomInfoDAO implements OrderRoomInfoInterface{
@@ -20,7 +21,14 @@ public class OrderRoomInfoDAO implements OrderRoomInfoInterface{
 //			List<OrderRoomInfoBean> result=dao.selectByOrderID(2);
 //			for(OrderRoomInfoBean bean:result){
 //					System.out.println(bean);
-//			}			
+//			}
+			
+			
+//			OrderRoomInfoDAO dao = new OrderRoomInfoDAO(session);
+//			List<OrderRoomInfoBean> result=dao.selecTByIn_OutDate("2016-01-01","2016-01-05",102);			
+//			for(OrderRoomInfoBean bean:result){
+//				System.out.println(bean);
+//			}
 			
 //			OrderRoomInfoDAO dao = new OrderRoomInfoDAO(session);
 //			OrderRoomInfoBean orderRoomInfoBean=new OrderRoomInfoBean();
@@ -60,6 +68,20 @@ public class OrderRoomInfoDAO implements OrderRoomInfoInterface{
 							.setInteger("orderID",orderID)
 							.list();
 		return result;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<OrderRoomInfoBean> selecTByIn_OutDate(String inDate, String outDate, int roomCode) {
+		String select_by_in_outDate = 
+				"from OrderRoomInfoBean where inDate between :inDate and :outDate or outDate between :inDate and :outDate and roomCode = :roomCode";
+			List<OrderRoomInfoBean> result =this.getSession()
+										.createQuery(select_by_in_outDate)
+										.setString("inDate",inDate)
+										.setString("outDate",outDate)
+										.setInteger("roomCode",roomCode)
+										.list();	
+			return result;
 	}
 
 	@Override

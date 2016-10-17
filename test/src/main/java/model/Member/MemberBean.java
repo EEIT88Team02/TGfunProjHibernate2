@@ -45,8 +45,8 @@ public class MemberBean {
 	private int vip;// VIP等級
 	private int Bonus;// 紅利(可消費)
 	private int TotalBonus;// 累積紅利(固定)
-	private boolean ssl;// 是否為SSL認證ssl
-	private boolean MemberStatus;
+	private Boolean ssl;// 是否為SSL認證ssl
+	private Boolean MemberStatus;
 	
 	// ----------BonusHistoryBean-----------------
 	@OneToMany(mappedBy = "MemberBean", cascade = { CascadeType.REMOVE }
@@ -286,19 +286,19 @@ public class MemberBean {
 		TotalBonus = totalBonus;
 	}
 
-	public boolean isSsl() {
+	public Boolean isSsl() {
 		return ssl;
 	}
 
-	public void setSsl(boolean ssl) {
+	public void setSsl(Boolean ssl) {
 		this.ssl = ssl;
 	}
 
-	public boolean getMemberStatus() {
+	public Boolean getMemberStatus() {
 		return MemberStatus;
 	}
 
-	public void setMemberStatus(boolean memberStatus) {
+	public void setMemberStatus(Boolean memberStatus) {
 		MemberStatus = memberStatus;
 	}
 
