@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -15,8 +17,12 @@ import org.hibernate.Session;
 
 import model.Article.ArticleBean;
 import model.MemberOrder.MemberOrderBean;
+import model.Message.MessageBean;
 import model.Report.ReportBean;
 import model.misc.HibernateUtil;
+
+import model.BonusHistory.*;
+import model.Bonus.*;
 
 @Entity
 @Table(name = "Member")
@@ -40,19 +46,61 @@ public class MemberBean {
 	private int Bonus;// 紅利(可消費)
 	private int TotalBonus;// 累積紅利(固定)
 	private boolean ssl;// 是否為SSL認證ssl
-	private int MemberStatus;
+	private boolean MemberStatus;
+	
+	// ----------BonusHistoryBean-----------------
+	@OneToMany(mappedBy = "MemberBean", cascade = { CascadeType.REMOVE }
 
-	@OneToMany(	mappedBy = "members" ,
-				cascade = { CascadeType.REMOVE })
-	private Set<ArticleBean> messages;
+	)
+	private Set<BonusHistoryBean> BonusHistoryBean;
 
-	public Set<ArticleBean> getMessages() {
-		return messages;
+	public Set<BonusHistoryBean> getBonusHistoryBean() {
+		return BonusHistoryBean;
 	}
 
-	public void setMessages(Set<ArticleBean> messages) {
-		this.messages = messages;
+	public void setBonusHistoryBean(Set<BonusHistoryBean> bonusHistoryBean) {
+		BonusHistoryBean = bonusHistoryBean;
 	}
+	// --------------BonusBean---------------------------------
+
+	@ManyToOne
+	@JoinColumn(name = "vip", referencedColumnName = "vip", insertable = false, updatable = false
+
+	)
+	private BonusBean BonusBean;
+
+	public BonusBean getBonusBean() {
+		return BonusBean;
+	}
+
+	public void setBonusBean(BonusBean bonusBean) {
+		BonusBean = bonusBean;
+	}
+
+	// -----------------ArticleBean--------------------------------------------------
+	@OneToMany(mappedBy = "members", cascade = { CascadeType.REMOVE })
+	private Set<ArticleBean> ArticleBean;
+
+	public Set<ArticleBean> getArticleBean() {
+		return ArticleBean;
+	}
+
+	public void setArticleBean(Set<ArticleBean> articleBean) {
+		ArticleBean = articleBean;
+	}
+	
+	@OneToMany(mappedBy = "members", cascade = { CascadeType.REMOVE })
+	private Set<MessageBean> MessageBean;
+	
+
+	public Set<MessageBean> getMessageBean() {
+		return MessageBean;
+	}
+
+	public void setMessageBean(Set<MessageBean> messageBean) {
+		MessageBean = messageBean;
+	}
+
 
 	@OneToMany(	mappedBy = "members" ,
 				cascade = { CascadeType.REMOVE })
@@ -246,11 +294,11 @@ public class MemberBean {
 		this.ssl = ssl;
 	}
 
-	public int getMemberStatus() {
+	public boolean getMemberStatus() {
 		return MemberStatus;
 	}
 
-	public void setMemberStatus(int memberStatus) {
+	public void setMemberStatus(boolean memberStatus) {
 		MemberStatus = memberStatus;
 	}
 

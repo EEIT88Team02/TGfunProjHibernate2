@@ -24,7 +24,7 @@ public class MessageDAO implements MessageInterface  {
 		HibernateUtil.getSessionFactory().getCurrentSession().beginTransaction();
 		 Session session=HibernateUtil.getSessionFactory().getCurrentSession();	 
 		 MessageDAO dao=new MessageDAO(session);
-//		 System.out.println(dao.selectAll()); 
+		 System.out.println(dao.selectAll()); 
 	//	 System.out.println(dao.selectByartCode(1)); 
 		 
 //			MessageBean insert2 = new MessageBean();
@@ -70,10 +70,10 @@ public class MessageDAO implements MessageInterface  {
 	}
 
 	@Override
-	public MessageBean update(MessageBean bean) {
+	public boolean update(MessageBean bean) {
 		// TODO Auto-generated method stub
 		session.saveOrUpdate(bean);
-		return bean;
+		return true;
 	}
 
 	@Override

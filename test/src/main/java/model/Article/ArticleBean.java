@@ -53,9 +53,7 @@ public class ArticleBean {
 		return ArtCode;
 	}
 
-	public void setArtCode(int artCode) {
-		ArtCode = artCode;
-	}
+	
 
 	public int getMemberID() {
 		return memberID;
@@ -212,7 +210,7 @@ public void setMessages(Set<MessageBean> messages) {
 			// session.save(insert);
 
 			 ArticleBean select = (ArticleBean) session.get(ArticleBean.class,2);
-			 System.out.println("select="+select.getMessages() );
+			 System.out.println("select="+select );
 
 			// ArticleBean select = (ArticleBean) session.get(ArticleBean.class,1);
 			// System.out.println(select.getReports());

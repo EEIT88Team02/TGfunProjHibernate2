@@ -11,6 +11,6 @@ public interface MessageInterface {
 	public abstract boolean insert(MessageBean messageBean);
 	
 	/*更新讚*/
-	public abstract MessageBean update(MessageBean bean);
+	public abstract boolean update(MessageBean bean);
 
 }

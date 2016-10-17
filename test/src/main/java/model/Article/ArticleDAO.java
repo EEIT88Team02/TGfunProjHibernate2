@@ -32,7 +32,8 @@ public class ArticleDAO implements ArticleInterface{
 			HibernateUtil.getSessionFactory().getCurrentSession().beginTransaction();
 			Session session=HibernateUtil.getSessionFactory().getCurrentSession();
 			ArticleDAO dao=new ArticleDAO(session);
-			 // System.out.println(dao.selectAll());
+		//	System.out.println(dao.selectBySortDate(false));  
+			 System.out.println(dao.selectAll());
 //			  List<ArticleBean> s=dao.selectAll();
 //			 for(ArticleBean ss:s)
 //			 {
@@ -161,6 +162,15 @@ public class ArticleDAO implements ArticleInterface{
 		// TODO Auto-generated method stub
 		session.saveOrUpdate(bean);	
 		return bean;
+	}
+
+	@Override
+	public List<ArticleBean> selectBySortDate(boolean BOLL) {
+		// TODO Auto-generated method stub
+		String name; 
+	name=(BOLL==true)? "desc":"asc";	
+		   Query query=session.createQuery("from ArticleBean order by ArtDate "+name);
+		return (List<ArticleBean>)query.list();
 	}
 
 	

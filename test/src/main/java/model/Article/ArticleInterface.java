@@ -10,6 +10,9 @@ public interface ArticleInterface {
 	public abstract List<ArticleBean> selectAll();
 	/*尋找發問日期*/
 	public abstract List<ArticleBean> selectByartDate(Date date, Date date1);
+	/*依日期排序 true="降"*/
+	public abstract List<ArticleBean> selectBySortDate(boolean BOLL);
+	
 	/*主題搜尋*/
 	public abstract List<ArticleBean> selectByArtTopic(String ArtTopic);
 	/* 帳號文章搜尋*/
@@ -24,5 +27,6 @@ public interface ArticleInterface {
 	public abstract boolean insert(ArticleBean articleBean);
 	
 	public abstract  ArticleBean  update(ArticleBean bean1);
+	
 	
 }
