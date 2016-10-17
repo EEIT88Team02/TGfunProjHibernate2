@@ -35,10 +35,10 @@ public class OrderRoomInfoService {
 			Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 
 //			OrderRoomInfoService service= new OrderRoomInfoService();
-//			List<OrderRoomInfoBean> result=service.selectByOrderID(2);
+//			List<OrderRoomInfoBean> result=service.selectByOrderID(1);
 //			for(OrderRoomInfoBean bean:result){
 //					System.out.println(bean);
-//			}		
+//			}
 			
 //			OrderRoomInfoService service = new OrderRoomInfoService();
 //			OrderRoomInfoBean orderRoomInfoBean=new OrderRoomInfoBean();

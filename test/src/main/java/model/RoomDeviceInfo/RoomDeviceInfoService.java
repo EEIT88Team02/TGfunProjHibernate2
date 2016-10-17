@@ -25,9 +25,9 @@ public class RoomDeviceInfoService {
 			HibernateUtil.getSessionFactory().getCurrentSession().beginTransaction();
 			Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 
-			RoomDeviceInfoService service= new RoomDeviceInfoService();
-			List<RoomDeviceInfoBean> result = service.selectByRoomCode(101);
-			System.out.println(result);
+//			RoomDeviceInfoService service= new RoomDeviceInfoService();
+//			List<RoomDeviceInfoBean> result = service.selectByRoomCode(101);
+//			System.out.println(result);
 
 			HibernateUtil.getSessionFactory().getCurrentSession().getTransaction().commit();
 		}

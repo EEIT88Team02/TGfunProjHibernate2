@@ -65,7 +65,7 @@ public class MemberOrderService {
 			Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 
 //			 MemberOrderService service= new MemberOrderService();
-//			 List<MemberOrderBean> result=service.selectByMemberID(2,true);
+//			 List<MemberOrderBean> result=service.selectByMemberID(2,false);
 //			 for(MemberOrderBean bean:result){
 //			 System.out.println(bean);
 //			 }

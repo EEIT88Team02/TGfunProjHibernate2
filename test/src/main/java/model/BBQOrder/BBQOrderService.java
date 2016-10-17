@@ -38,11 +38,11 @@ public class BBQOrderService {
 			HibernateUtil.getSessionFactory().getCurrentSession().beginTransaction();
 			Session session = HibernateUtil.getSessionFactory().getCurrentSession();			
 			
-//			BBQOrderService service = new BBQOrderService();
-//			List<BBQOrderBean> result=service.selectByOrderID(1,true);
-//			for(BBQOrderBean bean:result){
-//					System.out.println(bean);
-//			}				
+			BBQOrderService service = new BBQOrderService();
+			List<BBQOrderBean> result=service.selectByOrderID(1,false);
+			for(BBQOrderBean bean:result){
+					System.out.println(bean);
+			}
 			
 //			BBQOrderService service=new BBQOrderService();
 //			BBQOrderBean bbqOrderBean=new BBQOrderBean();
