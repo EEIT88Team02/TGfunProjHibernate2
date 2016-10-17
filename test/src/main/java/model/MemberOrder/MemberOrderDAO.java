@@ -22,7 +22,7 @@ public class MemberOrderDAO implements MemberOrderInterface {
 			Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 			
 //			MemberOrderDAO dao = new MemberOrderDAO(session);
-//			List<MemberOrderBean> result=dao.selectByMemberID(1);		
+//			List<MemberOrderBean> result=dao.selectByMemberID(1,false);		
 //			for(MemberOrderBean bean:result){
 //				System.out.println(bean);
 //		}
@@ -85,15 +85,14 @@ public class MemberOrderDAO implements MemberOrderInterface {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<MemberOrderBean> selecTByDateRange(int memberID,String firstDate,String lastDate) {
+	public List<MemberOrderBean> selecTByDateRange(int memberID,Date firstDate,Date lastDate) {
 		String select_by_dateRange = 
-			"from MemberOrderBean m where m.memberID = :memberID AND m.memberDate between convert(datetime,(:firstDate +' 00:00:00')) AND CONVERT(datetime,(:lastDate + ' 23:59:59.997')) AND haveDelete=true";
+			"from MemberOrderBean m where m.memberID = :memberID AND m.memberDate between :firstDate AND :lastDate AND haveDelete=false";
 		List<MemberOrderBean> result =this.getSession()
 									.createQuery(select_by_dateRange)
 									.setInteger("memberID",memberID)
-									.setString("firstDate",firstDate)
-									.setString("lastDate",lastDate)
-
+									.setDate("firstDate",firstDate)
+									.setDate("lastDate",lastDate)
 									.list();	
 		return result;
 	}
@@ -112,9 +111,15 @@ public class MemberOrderDAO implements MemberOrderInterface {
 
 	@Override
 
-	public MemberOrderBean updateHaveDelete(MemberOrderBean memberOrderBean) {
+	public boolean update(MemberOrderBean memberOrderBean) {
+		try {
 			this.getSession().saveOrUpdate(memberOrderBean);
-			return memberOrderBean;
+		}
+		catch (Exception e) {
+		e.printStackTrace();
+		return false;
+		}
+		return true;
 
 	}
 

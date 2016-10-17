@@ -26,7 +26,7 @@ public class MemberOrderService {
 		return memberOrderDAO.selectByMemberID(memberID,haveDelete);
 	}
 	
-	public List<MemberOrderBean> selecTByDateRange(int memberID,String firstDate,String lastDate) {
+	public List<MemberOrderBean> selecTByDateRange(int memberID,Date firstDate,Date lastDate) {
 		return memberOrderDAO.selecTByDateRange(memberID,firstDate,lastDate);
 	}
 	
@@ -38,8 +38,8 @@ public class MemberOrderService {
 			return false;
 	}
 	
-	public MemberOrderBean updateHaveDelete(MemberOrderBean memberOrderBean) {
-		return memberOrderDAO.updateHaveDelete(memberOrderBean);
+	public boolean update(MemberOrderBean memberOrderBean) {
+		return memberOrderDAO.update(memberOrderBean);
 	}
 	
 	public boolean order(MemberOrderBean memberOrderBean ,OrderRoomInfoBean orderRoomInfoBean,BBQOrderBean bbqOrderBean) {
@@ -70,11 +70,11 @@ public class MemberOrderService {
 //			 System.out.println(bean);
 //			 }
 
-//			MemberOrderService service = new MemberOrderService();
-//			List<MemberOrderBean> result=service.selecTByDateRange(1,"2016-10-12","2016-10-16");
-//			for(MemberOrderBean bean:result){
-//			System.out.println(bean);
-//			}
+			MemberOrderService service = new MemberOrderService();
+			List<MemberOrderBean> result=service.selecTByDateRange(1,new Date(),new Date());
+			for(MemberOrderBean bean:result){
+			System.out.println(bean);
+			}
 
 //			MemberOrderService service = new MemberOrderService();
 //			MemberOrderBean memberOrderBean=new MemberOrderBean();

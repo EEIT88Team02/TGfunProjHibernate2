@@ -9,10 +9,11 @@ public interface MemberOrderInterface {
 	
 	public abstract List<MemberOrderBean> selectByMemberID(int memberID,boolean haveDelete);
 
-	public abstract List<MemberOrderBean> selecTByDateRange(int memberID,String firstDate,String lastDate);
+	public abstract List<MemberOrderBean> selecTByDateRange(int memberID,Date firstDate,Date lastDate);
 
 	public abstract boolean insert(MemberOrderBean memberOrderBean);
 
-	public abstract MemberOrderBean updateHaveDelete(MemberOrderBean memberOrderBean);
+	public abstract boolean update(MemberOrderBean memberOrderBean);
+
 
 }
