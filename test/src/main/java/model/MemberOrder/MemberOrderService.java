@@ -11,6 +11,8 @@ import model.BBQOrder.BBQOrderBean;
 import model.BBQOrder.BBQOrderService;
 import model.OrderRoomInfo.OrderRoomInfoBean;
 import model.OrderRoomInfo.OrderRoomInfoService;
+import model.RoomInfo.RoomInfoBean;
+import model.RoomInfo.RoomInfoService;
 import model.misc.HibernateUtil;
 
 public class MemberOrderService {
@@ -30,27 +32,78 @@ public class MemberOrderService {
 		return memberOrderDAO.selecTByDateRange(memberID,firstDate,lastDate);
 	}
 	
-	public boolean insert(MemberOrderBean memberOrderBean) {
-		boolean result=memberOrderDAO.insert(memberOrderBean);
-		if(result==true)
-			return true;
+	public int insert(MemberOrderBean memberOrderBean) {
+		int result=memberOrderDAO.insert(memberOrderBean);
+		if(result!=0)
+			return result;
 		else
-			return false;
+			return 0;
 	}
 	
 	public boolean update(MemberOrderBean memberOrderBean) {
 		return memberOrderDAO.update(memberOrderBean);
 	}
 	
-	public boolean order(MemberOrderBean memberOrderBean ,OrderRoomInfoBean orderRoomInfoBean,BBQOrderBean bbqOrderBean) {
+	public boolean order(MemberOrderBean memberOrderBean ,OrderRoomInfoBean orderRoomInfoBean) {
 		try {
-			this.insert(memberOrderBean);
+			RoomInfoService roomInfoService = new RoomInfoService();
+			OrderRoomInfoService orderRoomInfoService=new OrderRoomInfoService();
+			//把MemberOrderBean新增進資料庫後取得orderID
+			memberOrderBean.setMemberDate(new Date());
+			memberOrderBean.setHaveDelete(false);
+			int orderID= this.insert(memberOrderBean);
+			System.out.println("-----------------------------------------");
+			System.out.println(orderID);
+			System.out.println("-----------------------------------------");
+			int roomCode=orderRoomInfoBean.getRoomCode();
+
+			//利用roomCode取得roomPrice
+			RoomInfoBean roomInfoBean= roomInfoService.selectByRoomCode(roomCode);
+			double roomPrice = roomInfoBean.getRoomPrice();
+			System.out.println("-----------------------------------------");
+			System.out.println(roomPrice);
+			System.out.println("-----------------------------------------");
+	
+			//計算住了多少時間			
+			 long inDate_long=orderRoomInfoBean.getInDate().getTime();
+			 long outDate_long=orderRoomInfoBean.getOutDate().getTime();
+			 int result_date=(int) (((outDate_long-inDate_long)/(3600*24*1000))+1);
+			 System.out.println("-----------------------------------------");
+			 System.out.println(result_date);
+			 System.out.println("-----------------------------------------");
+			 //在利用上面的roomPrice來算roomSum
+			 double roomSum=roomPrice*result_date;
+			 System.out.println("-----------------------------------------");
+			 System.out.println(roomSum);
+			 System.out.println("-----------------------------------------");
 			
-			OrderRoomInfoService orderRoomInfoService = new OrderRoomInfoService();
-			orderRoomInfoService.insert(orderRoomInfoBean);
+			//利用setRoomSum()把roomSum設進orderRoomInfoBean,接著直接把他新增進資料庫
+			orderRoomInfoBean.setRoomSum(roomSum);
+			orderRoomInfoBean.setOrderID(orderID);
+			boolean orderRoomInfo_result=orderRoomInfoService.insert(orderRoomInfoBean);
+			System.out.println("-----------------------------------------");
+			System.out.println(orderRoomInfo_result);
+			System.out.println("-----------------------------------------");
 			
-			BBQOrderService bbqOrderService = new BBQOrderService();
-			bbqOrderService.insert(bbqOrderBean);
+			//利用orderID搜尋roomSum後加總起來再塞給memberOrder
+			List<OrderRoomInfoBean> orderRoomInfoBeans=orderRoomInfoService.selectByOrderID(orderID);
+			double roomTotalSum=0;
+			for(OrderRoomInfoBean infoBean:orderRoomInfoBeans){
+				double roomsum=infoBean.getRoomSum();
+				roomTotalSum=roomTotalSum+roomsum;
+			}
+			System.out.println("-----------------------------------------");
+			System.out.println(roomTotalSum);
+			System.out.println("-----------------------------------------");
+			
+			//更新memberOrder	
+			memberOrderBean.setRoomTotalSum(roomTotalSum);
+			memberOrderBean.setMemberSum(roomTotalSum);
+
+			boolean memberOrder_update_result=this.update(memberOrderBean);
+			System.out.println("-----------------------------------------");
+			System.out.println(memberOrder_update_result);
+			System.out.println("-----------------------------------------");
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -70,18 +123,21 @@ public class MemberOrderService {
 //			 System.out.println(bean);
 //			 }
 
-			MemberOrderService service = new MemberOrderService();
-			List<MemberOrderBean> result=service.selecTByDateRange(1,new Date(),new Date());
-			for(MemberOrderBean bean:result){
-			System.out.println(bean);
-			}
+//			MemberOrderService service = new MemberOrderService();
+//			List<MemberOrderBean> result=service.selecTByDateRange(1,new Date(),new Date());
+//			for(MemberOrderBean bean:result){
+//			System.out.println(bean);
+//			}
 
 //			MemberOrderService service = new MemberOrderService();
 //			MemberOrderBean memberOrderBean=new MemberOrderBean();
 //			memberOrderBean.setMemberID(1);
-//			memberOrderBean.setMemberDate(new Date());
+//			SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+//			Date date=format.parse("2016-10-20 23:59:59.997");
+//			memberOrderBean.setMemberDate(date);
 //			memberOrderBean.setMemberSum(150000);
-//			service.insert(memberOrderBean);
+//			int PK=service.insert(memberOrderBean);
+//			System.out.println(PK);
 
 //			MemberOrderService service = new MemberOrderService();
 //			MemberOrderBean memberOrderBean=new MemberOrderBean();
@@ -91,32 +147,46 @@ public class MemberOrderService {
 //			memberOrderBean.setMemberSum(10000);
 //			memberOrderBean.setMemberDate(new Date());
 //			memberOrderBean.setHaveDelete(false);
-//			service.update(memberOrderBean);
-
+//			service.update(memberOrderBean);		
 			
 			
-//			MemberOrderService service = new MemberOrderService();
+			
+//			MemberOrderService memberOrderService = new MemberOrderService();
 //			
 //			MemberOrderBean memberOrderBean=new MemberOrderBean();
 //			memberOrderBean.setMemberID(1);
-//			memberOrderBean.setMemberDate(new Date());
-//			memberOrderBean.setMemberSum(150000);
-//			
-//			BBQOrderBean bbqOrderBean=new BBQOrderBean();
-//			bbqOrderBean.setOrderID(1);  
-//			bbqOrderBean.setBbqID(3);     
-//			bbqOrderBean.setBbqDate(new Date());
-//			bbqOrderBean.setHaveDelete(false);
 //			
 //			OrderRoomInfoBean orderRoomInfoBean=new OrderRoomInfoBean();
-//			orderRoomInfoBean.setOrderID(2);
-//			orderRoomInfoBean.setRoomCode(102);
-//			orderRoomInfoBean.setRoomSum(25000);
-//			SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd");			 
-//			orderRoomInfoBean.setInDate(dateFormat.parse("2016-10-14"));
-//			orderRoomInfoBean.setOutDate(dateFormat.parse("2016-11-15"));
+//			orderRoomInfoBean.setRoomCode(101);
+//			SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");			 
+//			orderRoomInfoBean.setInDate(dateFormat.parse("2016-10-14"+" 16:00:00"));
+//			orderRoomInfoBean.setOutDate(dateFormat.parse("2016-10-16"+" 10:00:00"));
 //			
-//			service.order(memberOrderBean,orderRoomInfoBean,bbqOrderBean);
+//			boolean result=memberOrderService.order(memberOrderBean,orderRoomInfoBean);
+//			System.out.println(result);
+	
+			
+			
+//			SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//			 long inDate_long=format.parse("2016-10-14"+" 16:00:00").getTime();
+//			 long outDate_long=format.parse("2016-10-16"+" 10:00:00").getTime();
+//			 int result=(int) (((outDate_long-inDate_long)/(3600*24*1000))+1);
+//			 System.out.println(result);
+//			 
+//			 double roomPrice=3800;
+//			 double total=roomPrice*result;
+//			 System.out.println(total);
+			
+//			OrderRoomInfoService orderRoomInfoService=new OrderRoomInfoService();
+//			List<OrderRoomInfoBean> orderRoomInfoBeans=orderRoomInfoService.selectByOrderID(2);
+//			double roomTotalSum=0;
+//			for(OrderRoomInfoBean infoBean:orderRoomInfoBeans){
+//				double roomsum=infoBean.getRoomSum();
+//				roomTotalSum=roomTotalSum+roomsum;
+//			}
+//			System.out.println(roomTotalSum);
+			 
+			 
 
 			HibernateUtil.getSessionFactory().getCurrentSession().getTransaction().commit();
 		}

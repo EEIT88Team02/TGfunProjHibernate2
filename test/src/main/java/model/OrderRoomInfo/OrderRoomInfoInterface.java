@@ -8,7 +8,7 @@ public interface OrderRoomInfoInterface {
 	
 	public abstract List<OrderRoomInfoBean> selectByOrderID(int orderID);
 	
-	public abstract List<OrderRoomInfoBean> selecTByIn_OutDate(String inDate,String outDate,int roomCode);
+	public abstract List<OrderRoomInfoBean> selectByIn_OutDate(String inDate,String outDate,int roomCode);
 	
 	public abstract boolean insert(OrderRoomInfoBean orderRoomInfoBean);
 }

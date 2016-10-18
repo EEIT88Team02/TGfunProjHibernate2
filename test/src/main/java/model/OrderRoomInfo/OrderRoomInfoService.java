@@ -21,6 +21,11 @@ public class OrderRoomInfoService {
 	public List<OrderRoomInfoBean> selectByOrderID(int orderID) {
 		return orderRoomInfoDAO.selectByOrderID(orderID);	
 	}
+	
+	public List<OrderRoomInfoBean> selectByIn_OutDate(String inDate, String outDate, int roomCode) {
+		return orderRoomInfoDAO.selectByIn_OutDate(inDate,outDate,roomCode);
+	}
+	
 	public boolean insert(OrderRoomInfoBean orderRoomInfoBean) {
 		boolean result=orderRoomInfoDAO.insert(orderRoomInfoBean);
 		if(result==true)

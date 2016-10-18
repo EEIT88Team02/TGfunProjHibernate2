@@ -17,11 +17,11 @@ public class OrderRoomInfoDAO implements OrderRoomInfoInterface{
 			HibernateUtil.getSessionFactory().getCurrentSession().beginTransaction();
 			Session session = HibernateUtil.getSessionFactory().getCurrentSession();			
 			
-//			OrderRoomInfoDAO dao = new OrderRoomInfoDAO(session);
-//			List<OrderRoomInfoBean> result=dao.selectByOrderID(2);
-//			for(OrderRoomInfoBean bean:result){
-//					System.out.println(bean);
-//			}
+			OrderRoomInfoDAO dao = new OrderRoomInfoDAO(session);
+			List<OrderRoomInfoBean> result=dao.selectByOrderID(2);
+			for(OrderRoomInfoBean bean:result){
+					System.out.println(bean);
+			}
 			
 			
 //			OrderRoomInfoDAO dao = new OrderRoomInfoDAO(session);
@@ -72,7 +72,7 @@ public class OrderRoomInfoDAO implements OrderRoomInfoInterface{
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<OrderRoomInfoBean> selecTByIn_OutDate(String inDate, String outDate, int roomCode) {
+	public List<OrderRoomInfoBean> selectByIn_OutDate(String inDate, String outDate, int roomCode) {
 		String select_by_in_outDate = 
 				"from OrderRoomInfoBean where inDate between :inDate and :outDate or outDate between :inDate and :outDate and roomCode = :roomCode";
 			List<OrderRoomInfoBean> result =this.getSession()

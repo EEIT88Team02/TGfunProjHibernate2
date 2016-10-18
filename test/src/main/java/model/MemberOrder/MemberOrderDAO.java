@@ -2,7 +2,8 @@ package model.MemberOrder;
 
 
 import java.text.ParseException;
-
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -33,11 +34,17 @@ public class MemberOrderDAO implements MemberOrderInterface {
 //			for(MemberOrderBean bean:result){
 //				System.out.println(bean);
 //			}
+//			MemberOrderDAO dao = new MemberOrderDAO(session);
+//			SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//			MemberOrderBean bean=dao.selecTByMemberDate(1,format.parse("2016-10-18 10:49:01"));
+//			System.out.println(bean);
+
 			
 //			MemberOrderDAO dao = new MemberOrderDAO(session);
 //			MemberOrderBean memberOrderBean=new MemberOrderBean();
 //			memberOrderBean.setMemberID(1);
-//			memberOrderBean.setMemberDate(new Date());
+//			SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");		
+//			memberOrderBean.setMemberDate(format.parse("2016-10-18 10:49:01"));
 //			memberOrderBean.setMemberSum(150000);
 //			dao.insert(memberOrderBean);
 			
@@ -95,18 +102,19 @@ public class MemberOrderDAO implements MemberOrderInterface {
 									.setDate("lastDate",lastDate)
 									.list();	
 		return result;
-	}
+	}	
 
 	@Override
-	public boolean insert(MemberOrderBean memberOrderBean) {
+	public int insert(MemberOrderBean memberOrderBean) {
+		int PK_ID=0;
 		try {
-			this.getSession().save(memberOrderBean);
+				PK_ID=(int) this.getSession().save(memberOrderBean);
 		}
 		catch (Exception e) {
 		e.printStackTrace();
-		return false;
+		return 0;
 		}
-		return true;
+		return PK_ID;
 	}
 
 	@Override
