@@ -4,10 +4,10 @@ import java.util.List;
 
 import org.hibernate.Session;
 
+import misc.HibernateUtil;
 import model.OrderRoomInfo.OrderRoomInfoBean;
 import model.RoomInfo.RoomInfoBean;
 import model.RoomInfo.RoomInfoDAO;
-import model.misc.HibernateUtil;
 
 public class RoomDeviceInfoDAO implements RoomDeviceInfoInterface {
 

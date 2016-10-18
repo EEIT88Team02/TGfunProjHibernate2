@@ -16,9 +16,9 @@ import javax.persistence.Table;
 
 import org.hibernate.Session;
 
+import misc.HibernateUtil;
 import model.MemberOrder.MemberOrderBean;
 import model.ProdOrderInfo.ProdOrderInfoBean;
-import model.misc.HibernateUtil;
 
 @Entity
 @Table(name = "ProdOrder")

@@ -17,9 +17,9 @@ import javax.persistence.UniqueConstraint;
 
 import org.hibernate.Session;
 
+import misc.HibernateUtil;
 import model.RoomInfo.RoomInfoBean;
 import model.DeviceInfo.DeviceInfoBean;
-import model.misc.HibernateUtil;
 
 @Entity
 @Table(	name = "ROOMDEVICEINFO" ,

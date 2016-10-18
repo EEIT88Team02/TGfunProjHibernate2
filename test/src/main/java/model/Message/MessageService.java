@@ -6,8 +6,7 @@ import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
-
-import model.misc.HibernateUtil;
+import misc.HibernateUtil;
 
 public class MessageService {
 	private MessageDAO messageDAO=new  MessageDAO(HibernateUtil.getSessionFactory().getCurrentSession()) ;

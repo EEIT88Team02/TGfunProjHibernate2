@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.hibernate.Session;
 
+import misc.HibernateUtil;
 import model.MemberOrder.MemberOrderBean;
-import model.misc.HibernateUtil;
 
 public class BBQInfoDAO implements BBQInfoInterface {
 

@@ -21,14 +21,16 @@ import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 /*待測*/
 import org.hibernate.Session;
+import org.springframework.stereotype.Component;
 
+import misc.HibernateUtil;
 import model.MemberOrder.MemberOrderBean;
 import model.RoomInfo.RoomInfoBean;
-import model.misc.HibernateUtil;
 
 @Entity
 @Table(	name = "ORDERROOMINFO" ,
 		uniqueConstraints = { @UniqueConstraint(columnNames = { "ORDERID", "ROOMCODE" }) })
+@Component
 public class OrderRoomInfoBean  {
 
 	@Id

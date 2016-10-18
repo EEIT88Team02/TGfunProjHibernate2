@@ -1,12 +1,15 @@
 package model.RoomInfo;
 
 import org.hibernate.Session;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+import misc.HibernateUtil;
 import model.MemberOrder.MemberOrderDAO;
-import model.misc.HibernateUtil;
-
+@Component
 public class RoomInfoService {
-
+	
+	@Autowired
 	private RoomInfoDAO roomInfoDAO;
 
 	public RoomInfoService() {

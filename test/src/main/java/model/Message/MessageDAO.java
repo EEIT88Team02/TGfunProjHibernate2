@@ -7,7 +7,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
-import model.misc.HibernateUtil;
+import misc.HibernateUtil;
 import model.Member.MemberBean;
 
 public class MessageDAO implements MessageInterface  {

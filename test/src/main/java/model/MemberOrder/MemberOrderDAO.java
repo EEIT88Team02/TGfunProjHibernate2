@@ -10,11 +10,13 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.springframework.stereotype.Component;
 
+import misc.HibernateUtil;
 import model.BBQOrder.BBQOrderBean;
 import model.OrderRoomInfo.OrderRoomInfoBean;
-import model.misc.HibernateUtil;
 
+@Component(value="memberOrderDAO")
 public class MemberOrderDAO implements MemberOrderInterface {
 
 	public static void main(String[] args) throws ParseException {

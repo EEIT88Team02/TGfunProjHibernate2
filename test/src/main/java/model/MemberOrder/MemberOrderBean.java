@@ -19,14 +19,16 @@ import javax.persistence.Table;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.type.StandardBasicTypes;
+import org.springframework.stereotype.Component;
 
+import misc.HibernateUtil;
 import model.BBQOrder.BBQOrderBean;
 import model.Member.MemberBean;
 import model.OrderRoomInfo.OrderRoomInfoBean;
-import model.misc.HibernateUtil;
 
 @Entity
 @Table(name = "MEMBERORDER")
+@Component
 public class MemberOrderBean {
 
 	@Id

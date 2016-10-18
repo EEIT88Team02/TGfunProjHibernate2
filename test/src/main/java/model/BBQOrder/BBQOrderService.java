@@ -5,8 +5,8 @@ import java.util.List;
 
 import org.hibernate.Session;
 
+import misc.HibernateUtil;
 import model.MemberOrder.MemberOrderDAO;
-import model.misc.HibernateUtil;
 
 public class BBQOrderService {
 

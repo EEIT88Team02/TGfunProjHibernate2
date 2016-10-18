@@ -15,12 +15,11 @@ import javax.persistence.Table;
 
 import org.hibernate.Session;
 
+import misc.HibernateUtil;
 import model.Article.ArticleBean;
 import model.MemberOrder.MemberOrderBean;
 import model.Message.MessageBean;
 import model.Report.ReportBean;
-import model.misc.HibernateUtil;
-
 import model.BonusHistory.*;
 import model.Bonus.*;
 

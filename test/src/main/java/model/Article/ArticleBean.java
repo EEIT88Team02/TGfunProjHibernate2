@@ -15,9 +15,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.hibernate.Session;
 
+import misc.HibernateUtil;
 import model.Message.MessageBean;
 import model.Report.ReportBean;
-import model.misc.HibernateUtil;
 import model.Member.MemberBean;
 
 @Entity

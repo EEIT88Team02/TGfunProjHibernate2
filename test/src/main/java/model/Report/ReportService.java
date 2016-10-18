@@ -6,7 +6,7 @@ import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
-import model.misc.HibernateUtil;
+import misc.HibernateUtil;
 
 public class ReportService {
 	private  ReportDAO  reportDAO=new ReportDAO(HibernateUtil.getSessionFactory().getCurrentSession());

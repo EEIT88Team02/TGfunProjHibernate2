@@ -10,10 +10,10 @@ import java.util.Set;
 
 import org.hibernate.Session;
 
+import misc.HibernateUtil;
 import model.Article.ArticleBean;
 import model.BonusHistory.BonusHistoryBean;
 import model.Message.MessageBean;
-import model.misc.HibernateUtil;
 
 public class MemberService {
 

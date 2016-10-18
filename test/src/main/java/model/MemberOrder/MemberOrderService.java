@@ -6,17 +6,21 @@ import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Session;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+import misc.HibernateUtil;
 import model.BBQOrder.BBQOrderBean;
 import model.BBQOrder.BBQOrderService;
 import model.OrderRoomInfo.OrderRoomInfoBean;
 import model.OrderRoomInfo.OrderRoomInfoService;
 import model.RoomInfo.RoomInfoBean;
 import model.RoomInfo.RoomInfoService;
-import model.misc.HibernateUtil;
 
+@Component
 public class MemberOrderService {
-
+	
+	@Autowired
 	private MemberOrderDAO memberOrderDAO;
 
 	public MemberOrderService() {

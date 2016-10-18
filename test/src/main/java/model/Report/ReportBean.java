@@ -16,8 +16,8 @@ import javax.persistence.UniqueConstraint;
 
 import org.hibernate.Session;
 
+import misc.HibernateUtil;
 import model.Article.ArticleBean;
-import model.misc.HibernateUtil;
 import model.Member.MemberBean;
 
 @Entity

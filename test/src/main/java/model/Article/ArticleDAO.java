@@ -14,8 +14,8 @@ import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
+import misc.HibernateUtil;
 import model.Message.MessageDAO;
-import model.misc.HibernateUtil;
 import model.Member.MemberBean;
 
 public class ArticleDAO implements ArticleInterface{

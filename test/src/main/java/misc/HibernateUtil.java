@@ -1,4 +1,4 @@
-package model.misc;
+package misc;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;

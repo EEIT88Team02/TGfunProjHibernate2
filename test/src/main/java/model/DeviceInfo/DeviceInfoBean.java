@@ -13,8 +13,8 @@ import javax.persistence.Table;
 
 import org.hibernate.Session;
 
+import misc.HibernateUtil;
 import model.RoomDeviceInfo.RoomDeviceInfoBean;
-import model.misc.HibernateUtil;
 
 @Entity
 @Table(name = "DEVICEINFO")

@@ -1,10 +1,10 @@
-package model.misc;
+package misc;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
-import model.misc.HibernateUtil;
+import misc.HibernateUtil;
 
 @WebListener
 public class SessionFactoryListener implements ServletContextListener {

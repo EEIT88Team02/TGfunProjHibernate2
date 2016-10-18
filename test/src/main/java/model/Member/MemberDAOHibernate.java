@@ -7,10 +7,10 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import misc.HibernateUtil;
 import model.Article.ArticleBean;
 import model.BonusHistory.BonusHistoryBean;
 import model.Message.MessageBean;
-import model.misc.HibernateUtil;
 
 public class MemberDAOHibernate implements MemberDAO {
 

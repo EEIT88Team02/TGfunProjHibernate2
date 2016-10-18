@@ -4,9 +4,9 @@ import java.util.List;
 
 import org.hibernate.Session;
 
+import misc.HibernateUtil;
 import model.RoomDeviceInfo.RoomDeviceInfoBean;
 import model.RoomDeviceInfo.RoomDeviceInfoDAO;
-import model.misc.HibernateUtil;
 
 public class DeviceInfoDAO implements DeviceInfoInterface {
 

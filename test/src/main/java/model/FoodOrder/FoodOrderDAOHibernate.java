@@ -7,7 +7,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import model.misc.HibernateUtil;
+import misc.HibernateUtil;
 
 public class FoodOrderDAOHibernate implements FoodOrderDAO {
 	

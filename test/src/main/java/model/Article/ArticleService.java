@@ -7,9 +7,9 @@ import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
+import misc.HibernateUtil;
 import model.Message.MessageBean;
 import model.Message.MessageDAO;
-import model.misc.HibernateUtil;
 
 public class ArticleService {
  private ArticleDAO articleDAO=new  ArticleDAO(HibernateUtil.getSessionFactory().getCurrentSession()) ;

@@ -5,12 +5,15 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 import org.hibernate.Session;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+import misc.HibernateUtil;
 import model.MemberOrder.MemberOrderDAO;
-import model.misc.HibernateUtil;
 
+@Component
 public class OrderRoomInfoService {
-
+	@Autowired
 	private OrderRoomInfoDAO orderRoomInfoDAO;
 
 	public OrderRoomInfoService() {

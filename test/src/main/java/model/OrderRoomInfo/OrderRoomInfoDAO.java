@@ -5,11 +5,13 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 import org.hibernate.Session;
+import org.springframework.stereotype.Component;
 
+import misc.HibernateUtil;
 import model.MemberOrder.MemberOrderBean;
 import model.MemberOrder.MemberOrderDAO;
-import model.misc.HibernateUtil;
 
+@Component(value="orderRoomInfoDAO")
 public class OrderRoomInfoDAO implements OrderRoomInfoInterface{
 
 	public static void main(String[] args) throws ParseException {

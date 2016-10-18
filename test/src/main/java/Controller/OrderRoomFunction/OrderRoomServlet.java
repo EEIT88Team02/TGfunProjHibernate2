@@ -14,6 +14,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
 import model.MemberOrder.MemberOrderBean;
 import model.MemberOrder.MemberOrderService;
 import model.OrderRoomInfo.OrderRoomInfoBean;
@@ -26,9 +29,26 @@ import model.RoomInfo.RoomInfoService;
 )
 public class OrderRoomServlet extends HttpServlet {
 	
-	private MemberOrderService memberOrderService=new MemberOrderService();
-	private OrderRoomInfoService orderRoomInfoService= new OrderRoomInfoService();
-	private RoomInfoService roomInfoService= new RoomInfoService();	
+	
+	private MemberOrderService memberOrderService;
+	private OrderRoomInfoService orderRoomInfoService;
+	private RoomInfoService roomInfoService;
+	private MemberOrderBean memberOrderBean;
+	private OrderRoomInfoBean orderRoomInfoBean;
+	
+	@Override
+	public void init() throws ServletException {
+		
+		WebApplicationContext context = 
+				WebApplicationContextUtils.getRequiredWebApplicationContext(this.getServletContext());
+		
+		memberOrderService=(MemberOrderService) context.getBean("memberOrderService");
+		orderRoomInfoService=(OrderRoomInfoService) context.getBean("orderRoomInfoService");
+		roomInfoService=(RoomInfoService) context.getBean("roomInfoService");
+		memberOrderBean=(MemberOrderBean)context.getBean("memberOrderBean");
+		orderRoomInfoBean=(OrderRoomInfoBean)context.getBean("orderRoomInfoBean");
+	}
+
 	private Date today =new Date();
 	private SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
@@ -58,11 +78,19 @@ public class OrderRoomServlet extends HttpServlet {
 		Date outDate = null;
 		try {
 			inDate=dateFormat.parse(inDate_str+" 16:00:00");
+		}
+		catch (ParseException e) {
+			errors.put("inDate","日期轉型錯誤");
+			e.printStackTrace();
+			request.getRequestDispatcher("/Order/OrderRoom.jsp").forward(request,response);			
+		}
+		try {
 			outDate=dateFormat.parse(outDate_str+" 10:00:00");
 		}
 		catch (ParseException e) {
+			errors.put("outDate","日期轉型錯誤");
 			e.printStackTrace();
-			System.out.println("日期的轉型錯誤");
+			request.getRequestDispatcher("/Order/OrderRoom.jsp").forward(request,response);
 		}						
 		//驗證資料	
 			
@@ -72,13 +100,11 @@ public class OrderRoomServlet extends HttpServlet {
 		//呼叫Model, 根據Model執行結果顯示View
 		
 		//設insert進資料庫的MemberOrderBean
-		MemberOrderBean memberOrderBean = new MemberOrderBean();
 		memberOrderBean.setMemberID(memberID);
 		System.out.println("-----------------------------------------");
 		System.out.println(memberOrderBean);
 		System.out.println("-----------------------------------------");
 		
-		OrderRoomInfoBean orderRoomInfoBean=new OrderRoomInfoBean();
 		orderRoomInfoBean.setRoomCode(roomCode);
 		orderRoomInfoBean.setInDate(inDate);
 		orderRoomInfoBean.setOutDate(outDate);

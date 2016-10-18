@@ -3,10 +3,12 @@ package model.RoomInfo;
 import java.util.List;
 
 import org.hibernate.Session;
+import org.springframework.stereotype.Component;
 
+import misc.HibernateUtil;
 import model.OrderRoomInfo.OrderRoomInfoBean;
-import model.misc.HibernateUtil;
 
+@Component(value="roomInfoDAO")
 public class RoomInfoDAO implements RoomInfoInterface {
 
 	public static void main(String[] args) {
